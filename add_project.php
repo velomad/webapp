@@ -101,7 +101,7 @@ else
 
                           <div class="input-group mb-3">
                                 
-                                <input type="text" class="form-control" placeholder="Deadline" name="deadline" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
+                                <input type="date" class="form-control" placeholder="Deadline" name="deadline" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
                               </div>
                               
                           <div class="input-group mb-3">

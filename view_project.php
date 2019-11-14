@@ -103,7 +103,7 @@ $quey=mysqli_query($conn,$sql);
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         
       <div class="card text-center border-primary col-lg-6">
   <div class="card-header mt-2 text-white  bg-secondary border-primary">
