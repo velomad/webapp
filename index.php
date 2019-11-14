@@ -1,60 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
 
-    <title>Login</title>
 
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    
-    <link rel="stylesheet" href="./css/style.css">
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
 
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
+
+    <!-- Custom Style-->
+
+
+     <link rel="stylesheet" href="./css/style.css">  
+
+
+    <link rel="stylesheet" href="./css/IndexStyle.css">
 </head>
 
 <body>
 
+    <div class="container">
+        <div class="panel">
+            <div class="row">
+                <div class="col liquid">
+                    <h4><i class="fas fa-drafting-compass"></i>Peaks & Arrow</h4>
 
+                    <!-- Owl-Carousel -->
 
-                    <div class="row vertical-offset-100">
-                            <div class="col-md-4 col-md-offset-4">
-                                <div class="panel panel-default">
-                                    
-                                    <div class="panel-body">
-                                        <form accept-charset="UTF-8"  role="form" class="form-signin" method="POST" action="logincheck.php">
-                                            <fieldset>
-                                                <label class="panel-login">
-                                                    <div class="login_result"></div>
-                                                </label>
-                                                <input class="form-control" placeholder="Username" name="user" id="username" type="text" autocomplete="off" Required>
-                                                <input class="form-control" placeholder="Password" name="pass"  id="password" type="password" autocomplete="off" required>
-                                                <br></br>
-                                                <input class="btn btn-lg btn-success btn-block" name="submit" type="submit" id="login" value="Login »">
-                                            </fieldset>
-                                        </form>
-                                        
-                                    </div>
-                                </div>
+                    <div class="owl-carousel owl-theme">
+                        <img src="./assets/undraw_authentication_fsn5.svg" alt="" class="login_img">
+                        <img src="./assets/undraw_personal_data_29co.svg" alt="" class="login_img">
+                        <img src="./assets/undraw_fingerprint_swrc.svg" alt="" class="login_img">
+                    </div>
+
+                    <!-- /Owl-Carousel -->
+
+                    
+                </div>
+                <div class="col login">
+
+                   
+                    <form  accept-charset="UTF-8"  role="form" class="form-signin" method="POST" action="logincheck.php">
+                        <div class="titles">
+                            
+                            <h3>Admin Login</h3>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Usename" name="user" class="form-input" autocomplete="off" required>
+                            <div class="input-icon">
+                                <i class="fas fa-user"></i>
                             </div>
-                 
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" name="pass" class="form-input" autocomplete="off" required> 
+                            <div class="input-icon">
+                                <i class="fas fa-user-lock"></i>
+                            </div>
+                        </div>
 
+                        <button type="submit" name="submit" value="login" class="btn btn-login">Login</button>
+                    </form>
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script type="text/javascript">
-        
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 2000,
+                autoplayHoverPause: true,
+                items: 1
+            });
+        });
     </script>
 </body>
 
