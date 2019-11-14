@@ -101,11 +101,13 @@ else
 <div class="container text-center ">
     
     <h5 class="py-4 bg-dark text-light rounded row">
-        <div class="col-sm-4">Project Title : <?php echo $row["title"];?></div>
-        <div class="col-sm-4">Deadline : <?php echo $row["deadline"];?></div>
-        <div class="col-sm-4">Description : <?php echo $row["info"];?></div>
+        <div class="col">Project Title : <?php echo $row["title"];?></div>
+        <div class="col">Deadline : <?php echo $row["deadline"];?></div>
+       
     </h5> 
-
+    <div class="py-4 mb-2 bg-secondary text-light rounded row">
+    <div class="col-sm-8 text-left">Description : <?php echo $row["info"];?></div>
+    </div>
     <div class="d-flex justify-content-center">
         <form action="" method="POST" class="w-40">
             <div class="py-1">
