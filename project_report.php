@@ -1,3 +1,4 @@
+
 <?php
 session_start(); 
 include("db.php");
@@ -7,231 +8,299 @@ $sql="select * from projects where id = $id";
 $quey=mysqli_query($conn,$sql); 
 $row = mysqli_fetch_assoc($quey);
 
-
-
+$userprofile = $_SESSION['user_name'];
+if($userprofile == true)
+{
+  
+ 
+}
+else
+{
+  header("Location:index.php");
+} 
 ?>
 
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>project report</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Login</title>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Peaks & Arrow</a>
+ 
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="logout.php">SIGN OUT</a>
+    </li>
+  </ul>
+</nav>
 
-<section id = inv_generator>
 
-    <div class="container text-center ">
-                  
-        <h4 class="py-4 bg-dark text-light rounded">Title :  <?php 
-                      echo $row["title"];
-                    ?> &nbsp; &nbsp; &nbsp; deadline : <?php 
-                    echo $row["deadline"];
-                  ?>  &nbsp; &nbsp; &nbsp; Description : <?php 
-                  echo $row["info"];
-                ?></h4> 
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="dashboard.php">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="add_project.php">
+              <span data-feather="plus-circle"></span>
+              Add Project
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="view_project.php">
+              <span data-feather="eye"></span>
+              View Projects
+            </a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="more-horizontal"></span>
+              Timeline
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="package"></span>
+              Packaging Process
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-        <div class="d-flex justify-content-center">
-            <form action="" method="POST" class="w-40">
-                <div class="py-1">
-                <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend ">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">item</span>
-                    </div>
-                    <input type="hidden" autocomplete="off" placeholder="id" name="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" >
-                    <input type="text" autocomplete="off" placeholder="item name" name="item_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" >
-                    </div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="row pt-3 ml-3"><a href="view_project.php"><button class="btn btn-success">projects</button></a></div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        
+     
+
+<div class="container text-center ">
+    
+    <h5 class="py-4 bg-dark text-light rounded row">
+        <div class="col-sm-4">Project Title : <?php echo $row["title"];?></div>
+        <div class="col-sm-4">Deadline : <?php echo $row["deadline"];?></div>
+        <div class="col-sm-4">Description : <?php echo $row["info"];?></div>
+    </h5> 
+
+    <div class="d-flex justify-content-center">
+        <form action="" method="POST" class="w-40">
+            <div class="py-1">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend ">
+                <span class="input-group-text" id="inputGroup-sizing-sm">item</span>
                 </div>
-                <div class="pt-1">
-                <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend ">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">size</span>
-                    </div>
-                    <input type="number" autocomplete="off" name="s1" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s2" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s3" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s4" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s5" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s6" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s7" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s8" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s9" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s10" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s11" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s12" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s13" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s14" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                    <input type="number" autocomplete="off" name="s15" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="hidden" autocomplete="off" placeholder="id" name="id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" >
+                <input type="text" autocomplete="off" placeholder="item name" name="item_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" >
+                </div>
+            </div>
+            <div class="pt-1">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend ">
+                <span class="input-group-text" id="inputGroup-sizing-sm">size</span>
+                </div>
+                <input type="number" autocomplete="off" name="s1" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s2" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s3" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s4" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s5" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s6" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s7" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s8" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s9" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s10" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s11" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s12" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s13" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s14" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                <input type="number" autocomplete="off" name="s15" placeholder="size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
 
-                    </div>
                 </div>
-                <div class="pt-1">
-                <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend ">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">pcs</span>
-                    </div>
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p1">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p2">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p3">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p4">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p5">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p6">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p7">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p8">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p9">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p10">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p11">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p12">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p13">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p14">
-                    <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p15">
-                    </div>
+            </div>
+            <div class="pt-1">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend ">
+                <span class="input-group-text" id="inputGroup-sizing-sm">pcs</span>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-success" name="create">Create</button>&nbsp;
-                    <button class="btn btn-success" name="read">read</button>&nbsp;
-                    <button class="btn btn-success" name="update">update</button>&nbsp;
-                    <button class="btn btn-success" name="delete">delete</button>&nbsp;
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p1">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p2">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p3">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p4">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p5">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p6">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p7">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p8">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p9">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p10">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p11">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p12">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p13">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p14">
+                <input type="number" autocomplete="off" placeholder="pcs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" name="p15">
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-success" name="create">Create</button>&nbsp;
+                <button class="btn btn-success" name="read">read</button>&nbsp;
+                <button class="btn btn-success" name="update">update</button>&nbsp;
+                <button class="btn btn-success" name="delete">delete</button>&nbsp;
+            </div>
+        </form>
+    </div>
 
-        <div class="d-flex table-data">
-            <table class="table table-striped table-dark">
-                <thead class="thead-dark">
+    <div class="d-flex table-data pt-3">
+        <table class="table table-striped table-dark">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th >
+                        Items
+                    </th>
+                    <th colspan="16">
+                        Quantity
+                    </th>
+                    <th colspan ="5">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            <?php
+            if(isset($_POST['read'])){
+                $result = getData();
+
+                if($result){
+                    while($row = mysqli_fetch_assoc($result)){?>
+
                     <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th >
-                            Items
-                        </th>
-                        <th colspan="16">
-                            Quantity
-                        </th>
-                        <th colspan ="5">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-                <?php
-                if(isset($_POST['read'])){
-                    $result = getData();
-
-                    if($result){
-                        while($row = mysqli_fetch_assoc($result)){?>
-
-                        <tr>
-                        <td data-id="<?php echo $row['id']; ?>" rowspan="2" style="vertical-align:middle;"><?php echo $row['id']; ?></td>
-                        <td data-id="<?php echo $row['id']; ?>" rowspan="2" style="vertical-align:middle;"><?php echo $row['item_name']; ?></td>
-                        <td>Size</td>
-                        
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s1']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s2']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s3']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s4']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s5']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s6']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s7']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s8']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s9']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s10']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s11']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s12']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s13']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s14']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s15']; ?></td>
-      <td rowspan="2"  style="vertical-align:middle;"> <p class="btnedit" data-id="<?php echo $row['id']; ?>"> EDIT </p></td>
-                        </tr>
-                        <tr>
-                        <td>Pcs</td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p1']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p2']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p3']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p4']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p5']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p6']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p7']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p8']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p9']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p10']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p11']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p12']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p13']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p14']; ?></td>
-      <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p15']; ?></td>
-                        </tr>
-                <?php
-                        }
-                    }
-                }
-                ?>
-                  <!--  <tr>
-                    <td rowspan="2" style="vertical-align:middle;">Shirt</td>
-      <td>Size</td>
-      <td>18</td>
-      <td>20</td>
-      <td>22</td>
-      <td>24</td>
-      <td>26</td>
-      <td>28</td>
-      <td>30</td>
-      <td>32</td>
-      <td>34</td>
-      <td>36</td>
-      <td>38</td>
-      <td>40</td>
-      <td>42</td>
-      <td>44</td>
-      <td>46</td>
-      <td rowspan="2"  style="vertical-align:middle;"> <a href="">Edit</a> </td>
+                    <td data-id="<?php echo $row['id']; ?>" rowspan="2" style="vertical-align:middle;"><?php echo $row['id']; ?></td>
+                    <td data-id="<?php echo $row['id']; ?>" rowspan="2" style="vertical-align:middle;"><?php echo $row['item_name']; ?></td>
+                    <td>Size</td>
+                    
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s1']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s2']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s3']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s4']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s5']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s6']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s7']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s8']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s9']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s10']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s11']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s12']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s13']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s14']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['s15']; ?></td>
+  <td rowspan="2"  style="vertical-align:middle;"> <p class="btnedit" data-id="<?php echo $row['id']; ?>"> EDIT </p></td>
                     </tr>
                     <tr>
                     <td>Pcs</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      <td>50</td>
-      
-                    </tr> -->
-                </tbody>
-            </table>
-        </div>
-
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p1']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p2']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p3']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p4']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p5']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p6']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p7']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p8']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p9']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p10']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p11']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p12']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p13']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p14']; ?></td>
+  <td data-id="<?php echo $row['id']; ?>"><?php echo $row['p15']; ?></td>
+                    </tr>
+            <?php
+                    }
+                }
+            }
+            ?>
+              <!--  <tr>
+                <td rowspan="2" style="vertical-align:middle;">Shirt</td>
+  <td>Size</td>
+  <td>18</td>
+  <td>20</td>
+  <td>22</td>
+  <td>24</td>
+  <td>26</td>
+  <td>28</td>
+  <td>30</td>
+  <td>32</td>
+  <td>34</td>
+  <td>36</td>
+  <td>38</td>
+  <td>40</td>
+  <td>42</td>
+  <td>44</td>
+  <td>46</td>
+  <td rowspan="2"  style="vertical-align:middle;"> <a href="">Edit</a> </td>
+                </tr>
+                <tr>
+                <td>Pcs</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  <td>50</td>
+  
+                </tr> -->
+            </tbody>
+        </table>
     </div>
 
-</section>
+</div>
+  
+      </div>
+    </main>
 
-    
 
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-<script src="https://kit.fontawesome.com/1318b09663.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        feather.replace();
 
-<script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
@@ -326,6 +395,8 @@ $row = mysqli_fetch_assoc($quey);
             
             return textvalues;
         }
+    
     </script>
 </body>
+
 </html>

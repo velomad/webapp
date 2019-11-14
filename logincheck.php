@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     if($total == 1)
     {
         $_SESSION['user_name'] = $username;
-        header('Location:projects.php');
+        header('Location:dashboard.php');
     }
     else 
     {

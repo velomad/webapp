@@ -12,7 +12,7 @@ if(isset($_POST['submit']))
 
   $query = " INSERT INTO projects (title, deadline, info) VALUES ('$title', '$deadline', '$info' )";
   mysqli_query($conn, $query);
-  header('location:projects.php');
+  header('location:view_project.php');
 
 }
 
