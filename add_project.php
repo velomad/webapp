@@ -66,7 +66,7 @@ else
             </a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="timeline.php">
               <span data-feather="more-horizontal"></span>
               Timeline
             </a>

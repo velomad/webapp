@@ -1,16 +1,24 @@
-<?php
-session_start(); 
+<?php session_start(); 
 include("db.php");
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)
 {
   
  
-}
+} 
 else
 {
   header("Location:index.php");
-} ?>
+} 
+
+$query = "SELECT * FROM timeline ORDER BY id ASC";
+
+$run = mysqli_query($conn,$query);
+
+//$result = mysqli_fetch_assoc($run);
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,11 +36,12 @@ else
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="/dist/js/timeline.min.js"></script>
+<link href="/dist/css/timeline.min.css" rel="stylesheet" />
+  </head>
+  <body>
 
-</head>
-<body>
-
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Peaks & Arrow</a>
  
   <ul class="navbar-nav px-3">
@@ -49,15 +58,15 @@ else
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="dashboard.php">
               <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              Dashboard 
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="add_project.php">
               <span data-feather="plus-circle"></span>
-              Add Project
+              Add Project<span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
@@ -67,7 +76,7 @@ else
             </a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="timeline.php">
+            <a class="nav-link" href="#">
               <span data-feather="more-horizontal"></span>
               Timeline
             </a>
@@ -81,15 +90,53 @@ else
         </ul>
       </div>
     </nav>
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 ">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3">
-        
-      <?php require "charts.php" ?>
-      <?php require "linechart.php" ?>
+<form action="generatetimeline.php" method="POST" name="add-project-form">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col"><input type="text" class="form-control" placeholder="Title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off"></div>
+      <div class="col"><input type="date" class="form-control" name="date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off"></div>
+      <div class="col"><textarea class="form-control" placeholder="Note" rows="1" aria-label="With textarea" name="note" required  autocomplete="off"></textarea></div>
+      <div class="col"><button type="submit" name="submit" class="btn btn-outline-primary" onclick="submitForm()">Submit</button></div>
+    </div>
+</form>
+
+<div class="container mt-3">
+  <div class="row text-center">
+ 
+      <div class="col-sm-6">
+
+      <?php 
+                            while($row =  mysqli_fetch_assoc($run))
+                            {
+                            ?>  
+    <div class="card bg-primary mt-3">
+    <div class="card-body text-white">
+      <p class="card-text">
+
+                                 
+                                        <h4> <?php echo $row['title']; ?> </h4>
+                                        <h6> <?php echo $row['dates']; ?> </h6>
+                                        <p> <?php echo $row['note']; ?> </p>
+                                
+                                
+
+      </p>
+    </div>
+  </div>
+  <?php
+                            }
+                         ?>
+
       </div>
-    </main>
-
+      
+    </div>
+  </div>
+</div>
+</div>
+</main>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -100,6 +147,8 @@ else
 
     <script type="text/javascript">
         feather.replace();
+      
+
     </script>
 </body>
 

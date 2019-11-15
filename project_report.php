@@ -97,7 +97,7 @@ else
             </a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="timeline.php">
               <span data-feather="more-horizontal"></span>
               Timeline
             </a>
@@ -113,7 +113,7 @@ else
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <div class="row pt-3 ml-3"><a href="view_project.php"><button class="btn btn-success">projects</button></a></div>
+    <div class="row pt-3 ml-3"><a class="pr-3" href="view_project.php"><button class="btn btn-success">projects</button></a> <a href="timeline.php"><button class="btn btn-success">View Tiemline</button></a></div>
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         
      
