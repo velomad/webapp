@@ -190,7 +190,7 @@ else
             </div>
             <div class="d-flex justify-content-center">
                 <button class="btn btn-success" name="create">Create</button>&nbsp;
-                <button class="btn btn-success" name="read">read</button>&nbsp;
+                <!-- <button class="btn btn-success" name="read">read</button>&nbsp; -->
                 <button class="btn btn-success" onClick=" prompt()" name="update">update</button>&nbsp;
                 <button class="btn btn-success" onClick=" prompt()" name="delete">delete</button>&nbsp;
             </div>
@@ -217,9 +217,9 @@ else
             </thead>
             <tbody id="tbody">
             <?php
-            if(isset($_POST['read'])){
+            if(isset($_POST['create']) || isset($_POST['update']) || isset($id)){
               // $id = isset($_GET['id']) ? $_GET['id'] : '';
-                $result = getData($project_id);
+                $result = getData($id);
 
                 if($result){
                     while($row = mysqli_fetch_assoc($result)){?>
