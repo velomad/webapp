@@ -12,25 +12,49 @@ else
   header("Location:index.php");
 }
 
-$sql="SELECT * FROM projects ORDER BY title DESC;";
+$query = "SELECT * FROM items";
 
-$quey=mysqli_query($conn,$sql);  
-
-// if (mysqli_num_rows($quey) > 0) {
-  //echo"test";
-  // output data of each row
-  
-  // while($row = mysqli_fetch_assoc($quey)) {
-  //     // echo $row['title'];
-  // }
-// } else {
-//   echo "0 results";
-// }
-// $row=mysqli_fetch_assoc($quey);
+$run = mysqli_query($conn, $query);
 
 
+if (isset($_POST['names'])) {
+    $names = $_POST['names'];
+}
 
-?> 
+if (isset($_POST['pnumber'])) {
+    $pnumber = $_POST['pnumber'];
+}
+
+if (isset($_POST['gender'])) {
+    $gender = $_POST['gender'];
+}
+
+if (isset($_POST['house'])) {
+    $house = $_POST['house'];
+}
+
+if (isset($_POST['size'])) {
+    $valueofsize = $_POST['size'];
+}
+
+if (isset($_POST['qty'])) {
+    $valueofqty = $_POST['qty'];
+}
+
+
+
+if(isset($_POST['submit']))
+      
+{
+
+  $query = " INSERT INTO packaging (names, pnumber, gender, house, size, qty) VALUES ('$names', '$pnumber', '$gender','$house','$valueofsize','$valueofqty' )";
+  mysqli_query($conn, $query);
+ header('location:packaging.php');
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +81,7 @@ $quey=mysqli_query($conn,$sql);
  
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="logout.php">SIGN OUT</a>
+      <a class="nav-link" href="#">SIGN OUT</a>
     </li>
   </ul>
 </nav>
@@ -69,13 +93,13 @@ $quey=mysqli_query($conn,$sql);
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="dashboard.php">
+            <a class="nav-link active" href="#">
               <span data-feather="home"></span>
               Dashboard <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="add_project.php">
+            <a class="nav-link" href="#">
               <span data-feather="plus-circle"></span>
               Add Project
             </a>
@@ -87,13 +111,13 @@ $quey=mysqli_query($conn,$sql);
             </a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="timeline.php">
+            <a class="nav-link" href="#">
               <span data-feather="more-horizontal"></span>
               Timeline
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="packaging.php">
+            <a class="nav-link" href="#">
               <span data-feather="package"></span>
               Packaging Process
             </a>
@@ -103,34 +127,85 @@ $quey=mysqli_query($conn,$sql);
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3">
         
-      <div class="card text-center border-primary col-lg-6">
-  <div class="card-header mt-2 text-white  bg-secondary border-primary">
-  Projects 
+   
+<form action="issue.php" method="POST">
+  <div class="form-group">   
+    <input type="text" class="form-control" id="name" name="names" aria-describedby="name" placeholder="name" autocomplete="off"> 
+    <input type="number" class="form-control" id="name" name="pnumber" aria-describedby="number" placeholder="phone no." autocomplete="off"> 
   </div>
-  <div class="card-body">
-          
-           
-            <ul class="list-group">
-              <?php 
-              //print_r($row);
-              if (mysqli_num_rows($quey) > 0) {
-                while($row = mysqli_fetch_assoc($quey)){  
-                ?>
-                 <li class="list-group-item "><a href="project_report.php?id=<?php echo $row['id']?>" ><?php echo $row['title']  ?></li>            
-                <?php
-               } }
-               else {
-                  echo "0 results";
-                }
-              ?></ul>
-          
+  
+  <div class="form-check">
+  <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="option1" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    Male
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="option2">
+  <label class="form-check-label" for="exampleRadios2">
+    Female
+  </label>
+</div>
 
 
+
+<div class="row">
+<hr>
+ITEMS
 </div>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="house" id="exampleRadios1" value="option1" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    red
+  </label>
 </div>
-             
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="house" id="exampleRadios2" value="option2">
+  <label class="form-check-label" for="exampleRadios2">
+    green
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="house" id="exampleRadios1" value="option1" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    blue
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="house" id="exampleRadios2" value="option2">
+  <label class="form-check-label" for="exampleRadios2">
+    yellow
+  </label>
+</div>
+
+    <?php
+        while($row = mysqli_fetch_assoc($run)){
+    ?>
+    <p class="mt-3"><?php echo $row['item_name']; ?> 
+    <select name="size">
+  <option value="10">10</option>
+  <option value="20">20</option>
+  <option value="30">30</option>
+  <option value="40">40</option>
+</select>
+
+<select name="qty">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+    </p>
+
+<?php
+        }
+?>
+  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+</form>
+        
       </div>
     </main>
 

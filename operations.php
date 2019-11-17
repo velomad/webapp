@@ -20,18 +20,21 @@
 
     //create button click
     if(isset($_POST['create'])){
-        createData();
+        $project_id = isset($_GET['id']) ? $_GET['id'] : '';
+        createData($project_id);
         
     }
 
     //Read button click
     if(isset($_POST['read'])){
-        getData();
+        $project_id = isset($_GET['id']) ? $_GET['id'] : '';
+        getData($project_id);
     }
 
     //update button click
     if(isset($_POST['update'])){
         updateData();
+        
     }
 
     //delete button click
@@ -41,7 +44,7 @@
 
 
     //insert data into database..
-    function createData(){
+    function createData($project_id){
         $itemName = textBoxValue('item_name');
         $s1 = textBoxValue('s1');
         $s2 = textBoxValue('s2');
@@ -75,9 +78,10 @@
         $p15 = textBoxValue('p15');
 
 
-        $query = "INSERT INTO items (item_name,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15)
-                    Values('$itemName','$s1','$s2','$s3','$s4','$s5','$s6','$s7','$s8','$s9','$s10','$s11','$s12','$s13','$s14','$s15','$p1','$p2','$p3','$p4','$p5','$p6','$p7','$p8','$p9','$p10','$p11','$p12','$p13','$p14','$p15')";
-
+        $query = "INSERT INTO items (project_id,item_name,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15)
+                    Values('$project_id','$itemName','$s1','$s2','$s3','$s4','$s5','$s6','$s7','$s8','$s9','$s10','$s11','$s12','$s13','$s14','$s15','$p1','$p2','$p3','$p4','$p5','$p6','$p7','$p8','$p9','$p10','$p11','$p12','$p13','$p14','$p15')";
+        // echo "sql".$query;
+        // exit();
         if(mysqli_query($GLOBALS['conn'],$query)){
             return $GLOBALS['conn'];
 
@@ -97,9 +101,9 @@
     }
 
     //get data from the database..
-    function getData(){
+    function getData($project_id){
 
-        $query = "SELECT * FROM items";
+        $query = "SELECT * FROM items where project_id = $project_id";
 
         $result = mysqli_query($GLOBALS['conn'], $query);
 
@@ -167,6 +171,7 @@
         if(mysqli_query($GLOBALS['conn'],$query)){
             return $GLOBALS['conn'];
         }
+        
     }
 
     

@@ -12,25 +12,13 @@ else
   header("Location:index.php");
 }
 
-$sql="SELECT * FROM projects ORDER BY title DESC;";
+$query = "SELECT * FROM projects";
 
-$quey=mysqli_query($conn,$sql);  
-
-// if (mysqli_num_rows($quey) > 0) {
-  //echo"test";
-  // output data of each row
-  
-  // while($row = mysqli_fetch_assoc($quey)) {
-  //     // echo $row['title'];
-  // }
-// } else {
-//   echo "0 results";
-// }
-// $row=mysqli_fetch_assoc($quey);
+$run = mysqli_query($conn, $query);
 
 
 
-?> 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +45,7 @@ $quey=mysqli_query($conn,$sql);
  
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="logout.php">SIGN OUT</a>
+      <a class="nav-link" href="#">SIGN OUT</a>
     </li>
   </ul>
 </nav>
@@ -81,7 +69,7 @@ $quey=mysqli_query($conn,$sql);
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="view_project.php">
               <span data-feather="eye"></span>
               View Projects
             </a>
@@ -93,7 +81,7 @@ $quey=mysqli_query($conn,$sql);
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="packaging.php">
+            <a class="nav-link" href="#">
               <span data-feather="package"></span>
               Packaging Process
             </a>
@@ -103,34 +91,28 @@ $quey=mysqli_query($conn,$sql);
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        
-      <div class="card text-center border-primary col-lg-6">
-  <div class="card-header mt-2 text-white  bg-secondary border-primary">
-  Projects 
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3">
+       
+  
+  
+
+<div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Select for packaging process
+  </button>
+  <div class="dropdown-menu">
+  <?php
+    while($row = mysqli_fetch_assoc($run))
+        {
+    ?>
+    <a class="dropdown-item" href="stuff.php"><?php echo $row['title']; ?></a>
+    <?php
+        }
+    ?>
   </div>
-  <div class="card-body">
-          
-           
-            <ul class="list-group">
-              <?php 
-              //print_r($row);
-              if (mysqli_num_rows($quey) > 0) {
-                while($row = mysqli_fetch_assoc($quey)){  
-                ?>
-                 <li class="list-group-item "><a href="project_report.php?id=<?php echo $row['id']?>" ><?php echo $row['title']  ?></li>            
-                <?php
-               } }
-               else {
-                  echo "0 results";
-                }
-              ?></ul>
-          
+</div>
 
 
-</div>
-</div>
-             
       </div>
     </main>
 

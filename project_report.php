@@ -4,8 +4,10 @@ session_start();
 include("db.php");
 require_once("operations.php");
 $id = isset($_GET['id']) ? $_GET['id'] : '';
-$sql="select * from projects where id = $id";
+ $sql=" SELECT * FROM projects WHERE id = $id ";
 $quey=mysqli_query($conn,$sql); 
+//echo $quey;
+// echo "test";
 $row = mysqli_fetch_assoc($quey);
 
 $userprofile = $_SESSION['user_name'];
@@ -113,7 +115,9 @@ else
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <div class="row pt-3 ml-3"><a class="pr-3" href="view_project.php"><button class="btn btn-success">projects</button></a> <a href="timeline.php"><button class="btn btn-success">View Tiemline</button></a></div>
+    <div class="row pt-3 ml-3"><a class="pr-3" href="view_project.php"><button class="btn btn-success">projects</button></a> 
+    <a class="pr-3" href="timeline.php"><button class="btn btn-success">View Tiemline</button></a>
+    <a href="inventory_insights.php"><button class="btn btn-success">Inventory insights</button></a></div>
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         
      
@@ -187,8 +191,8 @@ else
             <div class="d-flex justify-content-center">
                 <button class="btn btn-success" name="create">Create</button>&nbsp;
                 <button class="btn btn-success" name="read">read</button>&nbsp;
-                <button class="btn btn-success" name="update">update</button>&nbsp;
-                <button class="btn btn-success" name="delete">delete</button>&nbsp;
+                <button class="btn btn-success" onClick=" prompt()" name="update">update</button>&nbsp;
+                <button class="btn btn-success" onClick=" prompt()" name="delete">delete</button>&nbsp;
             </div>
         </form>
     </div>
@@ -214,7 +218,8 @@ else
             <tbody id="tbody">
             <?php
             if(isset($_POST['read'])){
-                $result = getData();
+              // $id = isset($_GET['id']) ? $_GET['id'] : '';
+                $result = getData($project_id);
 
                 if($result){
                     while($row = mysqli_fetch_assoc($result)){?>
@@ -418,6 +423,10 @@ else
             return textvalues;
         }
     
+
+        function prompt(){
+          alert("are you sure ?");
+        }
     </script>
 </body>
 
