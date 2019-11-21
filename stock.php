@@ -34,10 +34,10 @@ else
 
 <ul class="nav justify-content-center">
   <li class="nav-item">
-    <a class="nav-link" href="#">PURCHASE</a>
+    <a class="nav-link" href="purchase.php">PURCHASE</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">SALES</a>
+    <a class="nav-link" href="sales.php">SALES</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="dashboard.php">DASHBOARD</a>
