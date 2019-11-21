@@ -12,7 +12,7 @@ else
   header("Location:index.php");
 }
 
-$sql="SELECT * FROM projects ORDER BY title DESC;";
+$sql="SELECT * FROM projects ORDER BY title asc;";
 
 $quey=mysqli_query($conn,$sql);  
 

@@ -78,6 +78,12 @@ else
               Packaging Process
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="stock.php">
+              <span data-feather="shopping-cart"></span>
+              Pur/Sales
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -88,6 +94,7 @@ else
      
       <?php require "linechart.php" ?>
       <?php require "charts.php" ?>
+  
 
       
       </div>

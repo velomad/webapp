@@ -27,10 +27,10 @@
     }
 
     //Read button click
-    if(isset($_POST['read'])){
-        $project_id = isset($_GET['id']) ? $_GET['id'] : '';
-        getData($project_id);
-    }
+   // if(isset($_POST['read'])){
+      //  $project_id = isset($_GET['id']) ? $_GET['id'] : '';
+      //  getData($project_id);
+    //}
 
     //update button click
     if(isset($_POST['update'])){

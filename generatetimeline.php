@@ -10,9 +10,9 @@ if(isset($_POST['submit']))
       
 {
 
-  $query = " INSERT INTO timeline (title, dates, note) VALUES ('$title', '$dates', '$note' )";
-  mysqli_query($conn, $query);
-  header('location:timeline.php');
+  $query = " INSERT INTO showtimeline (title, dates, note) VALUES ('$title', '$dates', '$note' )";
+ mysqli_query($conn, $query);
+  header('location:show_timeline.php');
 
 }
 ?>

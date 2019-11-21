@@ -1,5 +1,8 @@
 <?php session_start(); 
 include("db.php");
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+//echo $id;
+//exit();
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)
 {
@@ -11,7 +14,7 @@ else
   header("Location:index.php");
 } 
 
-$query = "SELECT * FROM projects ORDER BY title ASC";
+$query = "SELECT * FROM showtimeline";
 
 $run = mysqli_query($conn,$query);
 
@@ -52,67 +55,74 @@ $run = mysqli_query($conn,$query);
 </nav>
 
 
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="dashboard.php">
-              <span data-feather="home"></span>
-              Dashboard 
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add_project.php">
-              <span data-feather="plus-circle"></span>
-              Add Project<span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="view_project.php">
-              <span data-feather="eye"></span>
-              View Projects
-            </a>
-            </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="more-horizontal"></span>
-              Timeline
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="packaging.php">
-              <span data-feather="package"></span>
-              Packaging Process
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 ">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 
-
-    <div class="dropdown">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-    Select project to view timeline
-  </button>
-  <div class="dropdown-menu">
-  <?php
-    while($row = mysqli_fetch_assoc($run))
-        {
-    ?>
-    <a class="dropdown-item" href="show_timeline.php?id=<?php echo $row['id']?>"><?php echo $row['title']; ?></a>
-    <?php
-        }
-    ?>
+<main role="main" class="">
+  
+<div class="card text-center border-primary ">
+  <div class="card-header mt-2 text-white bg-secondary border-primary">
+    Generate Timeline
   </div>
+  <div class="card-body">
+
+  <form action="generatetimeline.php" method="POST">
+                    <div class="input-group mb-3">
+                     
+                            
+                            <input type="text" class="form-control" placeholder="Title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
+                          </div>
+
+                          <div class="input-group mb-3">
+                                
+                          <input type="date" class="form-control" name="date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
+                              </div>
+                              
+                          <div class="input-group mb-3">
+                         
+                          <textarea class="form-control" placeholder="Note" rows="1" aria-label="With textarea" name="note" required  autocomplete="off"></textarea>
+                        </div>
+            
+                        <div class="row">
+                                <div class="col text-center">
+                        <button type="submit" name="submit" class="btn btn-outline-primary" onclick="submitForm()">Submit</button>
+                                </div>
+                        </div>
+            </form>
+</div>
 </div>
 
 
 
+<div class="container mt-3">
+  <div class="row text-center">
+ 
+      <div class="col-sm-6">
+
+      <?php 
+                            while($row =  mysqli_fetch_assoc($run))
+                            {
+                            ?>  
+    <div class="card bg-primary mt-3">
+    <div class="card-body text-white">
+      <p class="card-text">
+
+                                 
+                                        <h4> <?php echo $row['title']; ?> </h4>
+                                        <h6> <?php echo $row['dates']; ?> </h6>
+                                        <p> <?php echo $row['note']; ?> </p>
+                                
+                                
+
+      </p>
     </div>
+  </div>
+  <?php
+                            }
+                         ?>
+
+      </div>
+      
+
+
 </main>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
