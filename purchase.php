@@ -1,4 +1,6 @@
-<?php session_start(); 
+<?php
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
+session_start(); 
 include("db.php");
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)
@@ -10,6 +12,13 @@ else
 {
   header("Location:index.php");
 } 
+
+$query = "SELECT * FROM categories";
+
+
+$query4 = "SELECT category_name,item_name,quantity,vendor,rate FROM categories 
+INNER JOIN additem ON categories.category_id = additem.category_id"; 
+
 
 
 ?>
@@ -34,7 +43,10 @@ else
 </head>
 <body>
 
-<ul class="nav justify-content-center">
+<ul class="nav justify-content-center mb-4">
+<li class="nav-item">
+    <a class="nav-link" href="stock.php">STOCKS</a>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="#">PURCHASE</a>
   </li>
@@ -66,9 +78,11 @@ else
 </div>   
 
 <!-- Modal -->
+
 <div class="modal fade" id="addcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
+    
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Add category</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -76,15 +90,19 @@ else
         </button>
       </div>
       <div class="modal-body">
-      <input type="text" placeholder="Add Category" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <form action="addcategories.php" method="POST">
+      <input type="text" placeholder="Add Category" name="category_name" class="form-control" autocomplete="off" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+</form>
+      </div>  
     </div>
+    
   </div>
 </div>
+
 <!-- Modal -->
 
 <!-- Modal -->
@@ -98,21 +116,26 @@ else
         </button>
       </div>
       <div class="modal-body">
+      <form action="additem.php" method="POST">
         <!-- dropdown -->
-        <select class="form-control mb-2" id="categoriesStatus" name="categoriesStatus" style="width:50%;">
-				      	<option value="">SELECT CATEGORY</option>
-				      	<option value="1">Available</option>
-				      	<option value="2">Not Available</option>
+        <select class="form-control mb-2" id="categoriesStatus" name="category_id" style="width:50%;">
+                          <option value="">SELECT CATEGORY</option>
+                          <?php
+                          $sql = mysqli_query($conn, $query);
+                         while($row = mysqli_fetch_assoc($sql)){ ?>  
+				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
+                        <?php } ?>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="text" placeholder="Vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      <input type="text" placeholder="Item Name" name="item_name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Vendor" name="vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -137,13 +160,17 @@ else
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>random</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>250</td>
-      <td><div class="dropdown">
+  <?php
+  $sql4 = mysqli_query($conn, $query4);
+    while ($row = $sql4->fetch_assoc()) { ?>
+    <th><?php echo $row['category_name'] ?></th>
+    <td><?php echo $row['item_name'];  ?></td>
+    <td><?php echo $row['quantity'];  ?></td>
+    <td><?php echo $row['vendor'];  ?></td>
+    <td><?php echo $row['rate'];  ?></td>
+  
+  
+      <td><div class="dropdown" >
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     action
   </button>
@@ -153,8 +180,9 @@ else
   </div>
 </div>
 </td>
-    </tr>
-   
+</tr>
+<?php } ?>
+
   </tbody>
 </table>
 
@@ -200,10 +228,10 @@ else
 				      	<option value="2">Not Available</option>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="text" placeholder="Vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

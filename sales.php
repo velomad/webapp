@@ -4,12 +4,17 @@ $userprofile = $_SESSION['user_name'];
 if($userprofile == true)
 {
   
- 
 }
 else
 {
   header("Location:index.php");
 } 
+
+$query = " SELECT * FROM categories ";
+
+$sql = mysqli_query($conn, $query);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +37,10 @@ else
 </head>
 <body>
 
-<ul class="nav justify-content-center">
+<ul class="nav justify-content-center mb-4">
+<li class="nav-item">
+    <a class="nav-link" href="stock.php">STOCKS</a>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="purchase.php">PURCHASE</a>
   </li>
@@ -53,7 +61,9 @@ else
     </div>
 
 <div class="row">
-
+<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#generatesale">
+  Generate Sale
+</button>
         <!-- table -->
 
 <table class="table">
@@ -107,6 +117,39 @@ else
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
         <button type="button" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+ <!-- Modal -->
+ <div class="modal fade" id="generatesale" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Generate Sale</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="categoriesStatus" name="categoriesStatus" style="width:50%;">  
+				      	<option value="">SELECT CATEGORY</option>
+                <?php while($row = $sql->fetch_assoc()){ ?>
+                  <option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
+				      	<?php } ?>
+				      </select>
+        <!-- end dropdown -->
+      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

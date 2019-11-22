@@ -10,6 +10,15 @@ else
 {
   header("Location:index.php");
 } 
+
+$query = "SELECT sum(rate) AS value_sum FROM additem";
+
+$sql = mysqli_query($conn, $query);
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +41,7 @@ else
 </head>
 <body>
 
-<ul class="nav justify-content-center">
+<ul class="nav justify-content-center mb-4">
   <li class="nav-item">
     <a class="nav-link" href="purchase.php">PURCHASE</a>
   </li>
@@ -47,6 +56,22 @@ else
   </li>
 </ul>
 
+
+<!-- content -->
+<div class="container">
+<div class="row">
+
+
+        <p class="mr-5" style="background-color:#323232; padding:10px 40px; border-radius:5px; width:30%; text-align:center; font-size:20px; color:white;">Stock Value <span class="badge badge-warning"><?php $row = mysqli_fetch_assoc($sql);  ?><?php echo $row['value_sum']; ?></span></p>
+        <p class="mr-5" style="background-color:#323232; padding:10px 40px; border-radius:5px; width:30%; text-align:center; font-size:20px; color:white;">Revenue <span class="badge badge-warning">50</span></p>
+        <p style="background-color:#323232; padding:10px 40px; border-radius:5px; width:30%; text-align:center; font-size:20px; color:white;">Other Cost <span class="badge badge-warning">50</span></p>
+    </div>
+
+
+   
+</div>
+
+<!-- End content -->
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
