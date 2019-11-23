@@ -1,0 +1,6 @@
+<select class="form-control mb-2" id="categoriesitem" name="categoriesitem" style="width:50%;">  
+				      	<option value="">SELECT ITEM</option>
+                <?php while($row = $sql2->fetch_assoc()){ ?>
+                  <option value=<?php echo $row['item_id']; ?>><?php echo $row['item_name'] ?></option>
+				      	<?php } ?>
+				      </select>

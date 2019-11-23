@@ -5,7 +5,6 @@ include("db.php");
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)
 {
-  
  
 }
 else
@@ -16,8 +15,8 @@ else
 $query = "SELECT * FROM categories";
 
 
-$query4 = "SELECT category_name,item_name,quantity,vendor,rate FROM categories 
-INNER JOIN additem ON categories.category_id = additem.category_id"; 
+$query4 = "SELECT category_name,item_name,quantity,vendor,rate FROM additem 
+INNER JOIN categories ON categories.category_id = additem.category_id"; 
 
 
 

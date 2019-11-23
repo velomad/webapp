@@ -11,8 +11,13 @@ else
 } 
 
 $query = " SELECT * FROM categories ";
-
 $sql = mysqli_query($conn, $query);
+
+$query2 = "SELECT item_id, item_name FROM additem";
+$sql2 = mysqli_query($conn, $query2);
+
+
+
 
 
 ?>
@@ -135,14 +140,23 @@ $sql = mysqli_query($conn, $query);
       </div>
       <div class="modal-body">
         <!-- dropdown -->
-        <select class="form-control mb-2" id="categoriesStatus" name="categoriesStatus" style="width:50%;">  
+        <select class="form-control mb-2" id="categoriesStatus" name="categoriesstatus_sales" style="width:50%;">  
 				      	<option value="">SELECT CATEGORY</option>
                 <?php while($row = $sql->fetch_assoc()){ ?>
                   <option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
 				      	<?php } ?>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="categoriesitem" name="categoriesitem" style="width:50%;">  
+				      	<option value="">SELECT ITEM</option>
+                <?php while($row = $sql2->fetch_assoc()){ ?>
+                  <option value=<?php echo $row['item_id']; ?>><?php echo $row['item_name'] ?></option>
+				      	<?php } ?>
+				      </select>
+        <!-- end dropdown -->
+        
       <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       <input type="text" placeholder="Client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
