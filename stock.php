@@ -11,7 +11,7 @@ else
   header("Location:index.php");
 } 
 
-$query = "SELECT sum(rate) AS value_sum FROM additem";
+$query = "SELECT sum(rate*quantity) AS value_sum FROM additem";
 
 $sql = mysqli_query($conn, $query);
 

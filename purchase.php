@@ -14,6 +14,7 @@ else
 
 $query = "SELECT * FROM categories";
 
+$query2 = "SELECT * FROM additem";
 
 $query4 = "SELECT category_name,item_name,quantity,vendor,rate FROM additem 
 INNER JOIN categories ON categories.category_id = additem.category_id"; 
@@ -74,6 +75,9 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#additem">
   Add Item
 </button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removecategory">
+  Remove Category
+</button>
 </div>   
 
 <!-- Modal -->
@@ -96,6 +100,41 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
 </form>
+      </div>  
+    </div>
+    
+  </div>
+</div>
+
+<!-- Modal -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="removecategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="removecategory.php" method="POST">
+      <select class="form-control mb-2" id="removecategory" name="removecategory" style="width:50%;">
+      <option value="">SELECT CATEGORY</option>
+                          <?php
+                          $sql = mysqli_query($conn, $query);
+                         while($row = mysqli_fetch_assoc($sql)){ ?>  
+				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
+                        <?php } ?>
+				              </select>
+                   </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="submit" class="btn btn-primary">Remove</button>
+      </form>
       </div>  
     </div>
     
@@ -155,6 +194,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
       <th scope="col">Quantity</th>
       <th scope="col">Vendor</th>
       <th scope="col">Rate</th>
+      <th scope="col">Value</th>
       <th scope="col">option</th>
     </tr>
   </thead>
@@ -167,6 +207,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
     <td><?php echo $row['quantity'];  ?></td>
     <td><?php echo $row['vendor'];  ?></td>
     <td><?php echo $row['rate'];  ?></td>
+    <td><?php echo $row['quantity']*$row['rate'];  ?></td>
   
   
       <td><div class="dropdown" >
@@ -188,6 +229,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
         <!-- table -->
 
 <!-- Modal -->
+
 <div class="modal fade" id="remove" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -198,11 +240,16 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
         </button>
       </div>
       <div class="modal-body">
+      
+      <?php 
+      $result = mysqli_query($conn, $query2);
+      $row = mysqli_fetch_assoc($result); ?>
       <p>Are you sure ?</p>
-      </div>
+      </div>    
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary">Yes</button>
+        <a name="submit" href="removepurchase.php?id=<?echo $row['item_id'];?>">Delete</a>
+        
       </div>
     </div>
   </div>
@@ -223,8 +270,11 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
         <!-- dropdown -->
         <select class="form-control mb-2" id="categoriesStatus" name="categoriesStatus" style="width:50%;">
 				      	<option value="">SELECT CATEGORY</option>
-				      	<option value="1">Available</option>
-				      	<option value="2">Not Available</option>
+                <?php 
+                $sql = mysqli_query($conn,$query);
+                while($row=mysqli_fetch_assoc($sql)) {?>
+				      	<option value=<?php echo $row['category_id'] ?> ><?php echo $row['category_name'] ?></option>
+                <?php } ?>
 				      </select>
         <!-- end dropdown -->
       <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">

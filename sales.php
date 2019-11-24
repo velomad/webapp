@@ -18,8 +18,6 @@ $sql2 = mysqli_query($conn, $query2);
 
 
 
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -139,6 +137,7 @@ $sql2 = mysqli_query($conn, $query2);
         </button>
       </div>
       <div class="modal-body">
+      <form action="addsales.php" method="POST">
         <!-- dropdown -->
         <select class="form-control mb-2" id="categoriesStatus" name="categoriesstatus_sales" style="width:50%;">  
 				      	<option value="">SELECT CATEGORY</option>
@@ -156,14 +155,15 @@ $sql2 = mysqli_query($conn, $query2);
 				      	<?php } ?>
 				      </select>
         <!-- end dropdown -->
-        
-      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+
+      <input type="text" placeholder="Quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Client" name="client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="number" placeholder="Rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
