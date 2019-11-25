@@ -16,6 +16,7 @@ $sql = mysqli_query($conn, $query);
 $query2 = "SELECT item_id, item_name FROM additem";
 $sql2 = mysqli_query($conn, $query2);
 
+$query3 = "SELECT * FROM sales";
 
 
 ?>
@@ -68,10 +69,12 @@ $sql2 = mysqli_query($conn, $query2);
   Generate Sale
 </button>
         <!-- table -->
-
+<?php $sql3 = mysqli_query($conn, $query3);
+ ?>
 <table class="table">
   <thead class="thead-light">
     <tr>
+      <th scope="col">Date &nbsp; | &nbsp; Time</th>
       <th scope="col">Category</th>
       <th scope="col">Item</th>
       <th scope="col">Quantity</th>
@@ -81,12 +84,15 @@ $sql2 = mysqli_query($conn, $query2);
     </tr>
   </thead>
   <tbody>
+  <?php
+  while($row = $sql3->fetch_assoc()){ ?>
     <tr>
-      <th>random</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>250</td>
+      <td><?php echo $row['dates'] ?></td>
+      <th><?php echo $row['category_id'] ?></th>
+      <td><?php echo $row['item_name'] ?></td>
+      <td><?php echo $row['quantity'] ?></td>
+      <td><?php echo $row['client'] ?></td>
+      <td><?php echo $row['rate'] ?></td>
       <td><div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     action
@@ -98,7 +104,7 @@ $sql2 = mysqli_query($conn, $query2);
 </div>
 </td>
     </tr>
-   
+  <?php } ?>
   </tbody>
 </table>
 

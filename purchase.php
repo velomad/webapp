@@ -75,6 +75,9 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#additem">
   Add Item
 </button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addunit">
+  Add Unit
+</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removecategory">
   Remove Category
 </button>
@@ -95,6 +98,34 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
       <div class="modal-body">
           <form action="addcategories.php" method="POST">
       <input type="text" placeholder="Add Category" name="category_name" class="form-control" autocomplete="off" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+</form>
+      </div>  
+    </div>
+    
+  </div>
+</div>
+
+<!-- Modal -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="addunit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Unit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="addunit.php" method="POST">
+      <input type="text" placeholder="Add Category" name="unit_name" class="form-control" autocomplete="off" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -189,10 +220,11 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Date</th>
+      <th scope="col">Date &nbsp; | &nbsp; Time</th>
       <th scope="col">Category</th>
       <th scope="col">Item</th>
       <th scope="col">Quantity</th>
+      <th scope="col">Unit</th>
       <th scope="col">Vendor</th>
       <th scope="col">Rate</th>
       <th scope="col">Value</th>
@@ -207,6 +239,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
     <th><?php echo $row['category_name'] ?></th>
     <td><?php echo $row['item_name'];  ?></td>
     <td><?php echo $row['quantity'];  ?></td>
+    <td>test unit</td>
     <td><?php echo $row['vendor'];  ?></td>
     <td><?php echo $row['rate'];  ?></td>
     <td><?php echo $row['quantity']*$row['rate'];  ?></td>
@@ -250,7 +283,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
       </div>    
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        <a name="submit" href="removepurchase.php?id=<?echo $row['item_id'];?>">Delete</a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
         
       </div>
     </div>
