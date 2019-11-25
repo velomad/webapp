@@ -16,7 +16,7 @@ $query = "SELECT * FROM categories";
 
 $query2 = "SELECT * FROM additem";
 
-$query4 = "SELECT category_name,item_name,quantity,vendor,rate FROM additem 
+$query4 = "SELECT dates,category_name,item_name,quantity,vendor,rate FROM additem 
 INNER JOIN categories ON categories.category_id = additem.category_id"; 
 
 
@@ -172,7 +172,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="submit"  class="btn btn-primary">Save changes</button>
         </form>
       </div>
     </div>
@@ -189,6 +189,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
 <table class="table">
   <thead class="thead-light">
     <tr>
+      <th scope="col">Date</th>
       <th scope="col">Category</th>
       <th scope="col">Item</th>
       <th scope="col">Quantity</th>
@@ -202,6 +203,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
   <?php
   $sql4 = mysqli_query($conn, $query4);
     while ($row = $sql4->fetch_assoc()) { ?>
+    <td><?php echo $row['dates'] ?></td>
     <th><?php echo $row['category_name'] ?></th>
     <td><?php echo $row['item_name'];  ?></td>
     <td><?php echo $row['quantity'];  ?></td>

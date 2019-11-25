@@ -2,6 +2,7 @@
 
 include("db.php");
 
+
 $category_id = $_POST['category_id'];
 $item_name = $_POST['item_name'];
 $quantity = $_POST['quantity'];
