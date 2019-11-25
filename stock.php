@@ -67,7 +67,11 @@ $sql = mysqli_query($conn, $query);
         <p style="background-color:#323232; padding:10px 40px; border-radius:5px; width:30%; text-align:center; font-size:20px; color:white;">Other Cost <span class="badge badge-warning">50</span></p>
     </div>
 
+<!-- purchase sale chart -->
 
+<?php include("purchasesalechart.php"); ?>
+
+<!-- end purchase sale chart -->
    
 </div>
 
