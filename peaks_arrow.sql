@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2019 at 03:44 AM
+-- Generation Time: Nov 25, 2019 at 04:55 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -30,9 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `additem` (
   `item_id` int(11) NOT NULL,
+  `dates` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `category_id` varchar(255) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `quantity` varchar(255) NOT NULL,
+  `unit` varchar(1) NOT NULL,
   `vendor` varchar(255) NOT NULL,
   `rate` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,13 +43,8 @@ CREATE TABLE `additem` (
 -- Dumping data for table `additem`
 --
 
-INSERT INTO `additem` (`item_id`, `category_id`, `item_name`, `quantity`, `vendor`, `rate`) VALUES
-(1, '1', 'nike', '5', 'kr prouctions', '6500'),
-(2, '1', 'aidas', '6', 'mk productions', '4522'),
-(3, '2', 'denim bomber', '2', 'pantic', '6855'),
-(4, '1', 'puma', '55', 'krk', '65233'),
-(5, '2', 'wesa', '1', 'lml', '10'),
-(6, '3', 'nshirt', '55', 'asw', '20.20');
+INSERT INTO `additem` (`item_id`, `dates`, `category_id`, `item_name`, `quantity`, `unit`, `vendor`, `rate`) VALUES
+(1, '2019-11-25 13:24:30', '1', 'abc school regular pant', '500', '', 'kntp', '180');
 
 -- --------------------------------------------------------
 
@@ -65,9 +62,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`) VALUES
-(1, 'shoes'),
-(2, 'jacket'),
-(3, 'shirting');
+(1, 'pant'),
+(2, 'shirting fabric');
 
 -- --------------------------------------------------------
 
@@ -116,12 +112,13 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `project_id`, `item_name`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`, `s9`, `s10`, `s11`, `s12`, `s13`, `s14`, `s15`, `p1`, `p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`, `p11`, `p12`, `p13`, `p14`, `p15`) VALUES
-(27, 4, 'shirt', 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(27, 4, 'shirt', 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1200, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (28, 4, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (31, 4, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (32, 3, 'shirtssssss', 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 20, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (33, 6, 'a', 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 220, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(34, 3, 'aa', 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 445, 5456, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(34, 3, 'aa', 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 445, 5456, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(35, 5, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -179,6 +176,7 @@ INSERT INTO `projects` (`id`, `title`, `deadline`, `info`) VALUES
 
 CREATE TABLE `sales` (
   `sale_id` int(11) NOT NULL,
+  `dates` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `category_id` varchar(255) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `quantity` varchar(255) NOT NULL,
@@ -313,19 +311,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `additem`
 --
 ALTER TABLE `additem`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `packaging`
