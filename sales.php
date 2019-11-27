@@ -144,6 +144,8 @@ $query3 = "SELECT * FROM sales";
       </div>
       <div class="modal-body">
       <form action="addsales.php" method="POST">
+      <input type="hidden" placeholder="Quantity" name="item_id" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      
         <!-- dropdown -->
         <select class="form-control mb-2" id="categoriesStatus" name="categoriesstatus_sales" style="width:50%;">  
 				      	<option value="">SELECT CATEGORY</option>

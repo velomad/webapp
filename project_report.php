@@ -410,13 +410,19 @@ else
         });
 
         function displayData(e){
+          console.log("e",e);
             let id = 0;
             const td = $("#tbody tr td");
             let textvalues = [];
 
             for(const value of td){
+              console.log("Value",value);
+              console.log("value.dataset.id",value.dataset.id);
+              
                 if(value.dataset.id == e.target.dataset.id){
+
                     textvalues[id++] = value.textContent;
+
                 }
             }
             

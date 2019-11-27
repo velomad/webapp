@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 session_start(); 
 include("db.php");
@@ -16,9 +17,22 @@ $query = "SELECT * FROM categories";
 
 $query2 = "SELECT * FROM additem";
 
-$query4 = "SELECT dates,category_name,item_name,quantity,vendor,rate FROM additem 
+$query3 = "SELECT * FROM units";
+
+$query4 = "SELECT item_id,dates,category_name,item_name,quantity,vendor,rate FROM additem 
 INNER JOIN categories ON categories.category_id = additem.category_id"; 
 
+$query5 = "SELECT item_id,dates,item_name,quantity,unit_name,vendor,rate FROM additem 
+ INNER JOIN units ON units.unit_id = additem.unit_id"; 
+// $query5 = "SELECT unit_name FROM  units
+// INNER JOIN additem ON units.unit_id = additem.unit_id"; 
+
+
+$sql10 = mysqli_query($conn, $query5);
+
+// $row = mysqli_fetch_assoc($sql10);
+
+// print_r($row);
 
 
 ?>
@@ -198,6 +212,16 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
         <!-- end dropdown -->
       <input type="text" placeholder="Item Name" name="item_name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       <input type="text" placeholder="Quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="unitstatus" name="unit_id" style="width:50%;">
+                          <option value="">SELECT UNIT</option>
+                          <?php
+                          $sql = mysqli_query($conn, $query3);
+                         while($row = mysqli_fetch_assoc($sql)){ ?>  
+				      	<option value=<?php echo $row['unit_id']; ?>><?php echo $row['unit_name'] ?></option>
+                        <?php } ?>
+				      </select>
+        <!-- end dropdown -->
       <input type="text" placeholder="Vendor" name="vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       <input type="text" placeholder="Rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       </div>
@@ -231,18 +255,18 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
       <th scope="col">option</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbody">
   <?php
   $sql4 = mysqli_query($conn, $query4);
     while ($row = $sql4->fetch_assoc()) { ?>
-    <td><?php echo $row['dates'] ?></td>
-    <th><?php echo $row['category_name'] ?></th>
-    <td><?php echo $row['item_name'];  ?></td>
-    <td><?php echo $row['quantity'];  ?></td>
-    <td>test unit</td>
-    <td><?php echo $row['vendor'];  ?></td>
-    <td><?php echo $row['rate'];  ?></td>
-    <td><?php echo $row['quantity']*$row['rate'];  ?></td>
+    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['dates'] ?></td>
+    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['category_name'] ?></td>
+    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['item_name'];  ?></td>
+    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['quantity'];  ?></td>
+    <td data-id="<?php echo $row['unit_id']; ?>"><?php $roww = $sql10->fetch_assoc(); echo $roww['unit_name'];  ?></td>
+    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['vendor'];  ?></td>
+    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['rate'];  ?></td>
+    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['quantity']*$row['rate'];  ?></td>
   
   
       <td><div class="dropdown" >
@@ -250,7 +274,7 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
     action
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" data-toggle="modal" data-target="#edit" id="#edit">edit</a>
+    <a class="edit dropdown-item"  data-id="<?php echo $row['item_id'];?>" id="edit">edit</a>
     <a class="dropdown-item" data-toggle="modal" data-target="#remove" id="#remove">remove</a> 
   </div>
 </div>
@@ -292,34 +316,46 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
 <!-- Modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="editmodal modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="padding-right: 17px; display: none;" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" onclick="closemodal()" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+      <form action="editpurchase.php" method="POST">
         <!-- dropdown -->
-        <select class="form-control mb-2" id="categoriesStatus" name="categoriesStatus" style="width:50%;">
+        <select class="form-control mb-2"  id="categoriesStatus" name="categoriesStatus" style="width:50%;">
 				      	<option value="">SELECT CATEGORY</option>
                 <?php 
                 $sql = mysqli_query($conn,$query);
                 while($row=mysqli_fetch_assoc($sql)) {?>
-				      	<option value=<?php echo $row['category_id'] ?> ><?php echo $row['category_name'] ?></option>
+				      	<option name="categoriesStatus" value=<?php echo $row['category_id'] ?> ><?php echo $row['category_name'] ?></option>
                 <?php } ?>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" name="itemname" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" name="quantity" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <!-- dropdown -->
+      <select class="form-control mb-2" id="unitstatus" name="unit_id" style="width:50%;">
+                          <option value="">SELECT UNIT</option>
+                          <?php
+                          $sql = mysqli_query($conn, $query3);
+                         while($row = mysqli_fetch_assoc($sql)){ ?>  
+				      	<option value=<?php echo $row['unit_id']; ?>><?php echo $row['unit_name'] ?></option>
+                        <?php } ?>
+				      </select>
+        <!-- end dropdown -->
+      <input type="text" name="vendor" placeholder="Vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="number" name="rate" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" onclick="closebox()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="submit"  class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -338,6 +374,61 @@ INNER JOIN categories ON categories.category_id = additem.category_id";
 
     <script type="text/javascript">
         feather.replace();
+        function closemodal(){
+          $('.editmodal').removeClass('show');
+          document.getElementById("editmodal").style.display = "none";
+        }
+
+        function closebox(){
+          $('.editmodal').removeClass('show');
+          document.getElementById("editmodal").style.display = "none";
+        }
+
+
+        $('.edit').click( (e)=>{
+          console.log("Clicked");
+          let textvalues = displayData(e);
+          console.log("text",textvalues);
+          $('.editmodal').addClass('show');
+          document.getElementById("editmodal").style.display = "block";
+
+          
+                    
+                    let s2 = $("input[name*='itemname']");
+                    let s3 = $("input[name*='quantity']");
+                    let s4 = $("input[name*='vendor']");
+                    let s5 = $("input[name*='rate']");
+
+                    
+                    // $('#categoriesStatus').val(textvalues[1]);
+                    // console.log("Selected",$('#categoriesStatus').val(textvalues[1]));
+                    s2.val(textvalues[2]);
+                    s3.val(textvalues[3]);
+                    s4.val(textvalues[4]);
+                    s5.val(textvalues[5]);
+            
+           
+            
+          
+              
+        });
+
+        function displayData(e){
+            let id = 0;
+            const td = $("#tbody td");
+            let textvalues = [];
+
+            for(const value of td){
+              
+              
+                if(value.dataset.id == e.target.dataset.id){
+                    textvalues[id++] = value.textContent;
+
+                }
+            }
+            
+            return textvalues;
+        }
     </script>
 </body>
 

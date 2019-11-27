@@ -16,9 +16,6 @@ $query = "SELECT sum(rate*quantity) AS value_sum FROM additem";
 $sql = mysqli_query($conn, $query);
 
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html>

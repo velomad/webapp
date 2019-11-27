@@ -44,86 +44,54 @@ $run = mysqli_query($conn,$query);
   </head>
   <body>
 
-  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Peaks & Arrow</a>
+  <ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="logout.php">Logout</a>
+  </li>
  
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="logout.php">SIGN OUT</a>
-    </li>
-  </ul>
-</nav>
+</ul>
 
 
-
-<main role="main" class="">
-  
-<div class="card text-center border-primary ">
-  <div class="card-header mt-2 text-white bg-secondary border-primary">
-    Generate Timeline
-  </div>
-  <div class="card-body">
-
-  <form action="generatetimeline.php" method="POST">
-                    <div class="input-group mb-3">
-                     
-                            
-                            <input type="text" class="form-control" placeholder="Title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
-                          </div>
-
-                          <div class="input-group mb-3">
-                                
-                          <input type="date" class="form-control" name="date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
-                              </div>
-                              
-                          <div class="input-group mb-3">
-                         
-                          <textarea class="form-control" placeholder="Note" rows="1" aria-label="With textarea" name="note" required  autocomplete="off"></textarea>
-                        </div>
-            
-                        <div class="row">
-                                <div class="col text-center">
-                        <button type="submit" name="submit" class="btn btn-outline-primary" onclick="submitForm()">Submit</button>
-                                </div>
-                        </div>
-            </form>
-</div>
-</div>
-
-
-
-<div class="container mt-3">
-  <div class="row text-center">
- 
-      <div class="col-sm-6">
-
-      <?php 
-                            while($row =  mysqli_fetch_assoc($run))
-                            {
-                            ?>  
-    <div class="card bg-primary mt-3">
-    <div class="card-body text-white">
-      <p class="card-text">
-
-                                 
-                                        <h4> <?php echo $row['title']; ?> </h4>
-                                        <h6> <?php echo $row['dates']; ?> </h6>
-                                        <p> <?php echo $row['note']; ?> </p>
-                                
-                                
-
-      </p>
+<div class="container mt-2">
+  <div class="row">
+  <div class="col-lg-3 col-6">
+      <form action="generatetimeline.php" method="POST">        
+          <input type="text" class="form-control" placeholder="Title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">    
+          </div>
+          <div class="col-lg-3 col-6">
+          <input type="date" class="form-control" name="date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
+          </div>
+          <div class="col-lg-3 col-12">
+          <textarea class="form-control" placeholder="Note" rows="1" aria-label="With textarea" name="note" required  autocomplete="off"></textarea>
+          </div>
+          <div class="col-lg-3 col-12 justify-content-center">
+          <button type="submit" name="submit" class="btn btn-outline-primary" onclick="submitForm()">Submit</button>
+          </form>
+          </div>    
     </div>
   </div>
-  <?php
-                            }
-                         ?>
-
-      </div>
-      
 
 
-</main>
+<div class="container">
+  <div class="row">
+<?php while($row =  mysqli_fetch_assoc($run)) { ?>  
+  <div class="col-lg-4">
+  <div class="card bg-primary mt-3">
+    <div class="card-body text-white">
+        <p class="card-text">                        
+          <h4> <?php echo $row['title']; ?> </h4>
+          <h6> <?php echo $row['dates']; ?> </h6>
+          <p> <?php echo $row['note']; ?> </p>
+        </p>
+    </div>
+    </div>
+  </div>
+<?php } ?>
+</div>
+</div>
+
+  
+
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

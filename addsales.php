@@ -2,6 +2,7 @@
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 include("db.php");
 
+
 $category_id = $_POST['categoriesstatus_sales'];
 $categoriesitem = $_POST['categoriesitem'];
 $quantity = $_POST['quantity'];
