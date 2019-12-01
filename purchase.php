@@ -50,6 +50,7 @@ $sql10 = mysqli_query($conn, $query5);
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/style.css">
+    <script src="jquery-3.4.1.min.js"></script>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -75,133 +76,18 @@ $sql10 = mysqli_query($conn, $query5);
   </li>
 </ul>
 
-
 <div class="container">
-<div class="row">
-        <p style="background-color:#323232; padding:10px 50px; border-radius:5px; width:100%; text-align:left; font-size:20px; color:white;">PURCHASE</p>
-    </div>
-    <div class="row">
-        <!-- Button trigger modal -->
-<div class="btn-group mb-3">    
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addcategory">
-  Add Category
-</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#additem">
-  Add Item
-</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addunit">
-  Add Unit
-</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removecategory">
-  Remove Category
-</button>
-</div>   
-
-<!-- Modal -->
-
-<div class="modal fade" id="addcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add category</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form action="addcategories.php" method="POST">
-      <input type="text" placeholder="Add Category" name="category_name" class="form-control" autocomplete="off" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-</form>
-      </div>  
-    </div>
-    
-  </div>
+<div class="btn-group btn-group-md">
+<button type="button" class="btn btn-primary" id="additem">add Item</button>
+<button type="button" class="btn btn-primary pull-right">Remove category</button>
 </div>
 
-<!-- Modal -->
 
-<!-- Modal -->
-
-<div class="modal fade" id="addunit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Unit</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form action="addunit.php" method="POST">
-      <input type="text" placeholder="Add Category" name="unit_name" class="form-control" autocomplete="off" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-</form>
-      </div>  
-    </div>
-    
-  </div>
-</div>
-
-<!-- Modal -->
-
-<!-- Modal -->
-
-<div class="modal fade" id="removecategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add category</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form action="removecategory.php" method="POST">
-      <select class="form-control mb-2" id="removecategory" name="removecategory" style="width:50%;">
-      <option value="">SELECT CATEGORY</option>
-                          <?php
-                          $sql = mysqli_query($conn, $query);
-                         while($row = mysqli_fetch_assoc($sql)){ ?>  
-				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
-                        <?php } ?>
-				              </select>
-                   </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="submit" class="btn btn-primary">Remove</button>
-      </form>
-      </div>  
-    </div>
-    
-  </div>
-</div>
-
-<!-- Modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="additem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form action="additem.php" method="POST">
+  <div class="row mt-3" id="slider">
+  <div class="col-lg-6">
+  <form id="formvalues">
         <!-- dropdown -->
-        <select class="form-control mb-2" id="categoriesStatus" name="category_id" style="width:50%;">
+        <select class="form-control mb-2" id="category" name="category">
                           <option value="">SELECT CATEGORY</option>
                           <?php
                           $sql = mysqli_query($conn, $query);
@@ -210,10 +96,10 @@ $sql10 = mysqli_query($conn, $query5);
                         <?php } ?>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Item Name" name="item_name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Item Name" id="itemname" name="itemname" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
         <!-- dropdown -->
-        <select class="form-control mb-2" id="unitstatus" name="unit_id" style="width:50%;">
+        <select class="form-control mb-2" id="unit" name="unit">
                           <option value="">SELECT UNIT</option>
                           <?php
                           $sql = mysqli_query($conn, $query3);
@@ -222,26 +108,30 @@ $sql10 = mysqli_query($conn, $query5);
                         <?php } ?>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Vendor" name="vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="submit"  class="btn btn-primary">Save changes</button>
+      <input type="text" placeholder="Vendor" id="vendor" name="vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Rate" id="rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+    
+    
+        <button type="button" id="butclose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  id="butsave"  class="btn btn-primary">Save changes</button>
         </form>
-      </div>
-    </div>
   </div>
+  <div class="col-lg-6">
+<input type="text" placeholder="Add category" id="addcategory" name="category_name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+<button  id="addcategorybtn"  class="btn btn-primary">Save changes</button>
+<input type="text" placeholder="Add unit" id="addunit" name="addunit" class="form-control mt-3" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+<button  id="addunitbtn"  class="btn btn-primary mt-2">Save changes</button>
+<div class="alert alert-success alert-dismissible mt-4" id="success" style="display:none;">
+	  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	</div>
 </div>
-<!-- Modal -->
+</div>
+  
 
 
-    </div>
-    <div class="row">
+<!-- table -->
 
-        <!-- table -->
-
-<table class="table">
+<table class="table mt-3">
   <thead class="thead-light">
     <tr>
       <th scope="col">Date &nbsp; | &nbsp; Time</th>
@@ -255,118 +145,15 @@ $sql10 = mysqli_query($conn, $query5);
       <th scope="col">option</th>
     </tr>
   </thead>
-  <tbody id="tbody">
-  <?php
-  $sql4 = mysqli_query($conn, $query4);
-    while ($row = $sql4->fetch_assoc()) { ?>
-    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['dates'] ?></td>
-    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['category_name'] ?></td>
-    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['item_name'];  ?></td>
-    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['quantity'];  ?></td>
-    <td data-id="<?php echo $row['unit_id']; ?>"><?php $roww = $sql10->fetch_assoc(); echo $roww['unit_name'];  ?></td>
-    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['vendor'];  ?></td>
-    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['rate'];  ?></td>
-    <td data-id="<?php echo $row['item_id']; ?>"><?php echo $row['quantity']*$row['rate'];  ?></td>
-  
-  
-      <td><div class="dropdown" >
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    action
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="edit dropdown-item"  data-id="<?php echo $row['item_id'];?>" id="edit">edit</a>
-    <a class="dropdown-item" data-toggle="modal" data-target="#remove" id="#remove">remove</a> 
-  </div>
-</div>
-</td>
-</tr>
-<?php } ?>
+  <tbody id="table">
 
   </tbody>
 </table>
 
-        <!-- table -->
-
-<!-- Modal -->
-
-<div class="modal fade" id="remove" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">remove</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-      <?php 
-      $result = mysqli_query($conn, $query2);
-      $row = mysqli_fetch_assoc($result); ?>
-      <p>Are you sure ?</p>
-      </div>    
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-
-<!-- Modal -->
-<div class="editmodal modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="padding-right: 17px; display: none;" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
-        <button type="button" onclick="closemodal()" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form action="editpurchase.php" method="POST">
-        <!-- dropdown -->
-        <select class="form-control mb-2"  id="categoriesStatus" name="categoriesStatus" style="width:50%;">
-				      	<option value="">SELECT CATEGORY</option>
-                <?php 
-                $sql = mysqli_query($conn,$query);
-                while($row=mysqli_fetch_assoc($sql)) {?>
-				      	<option name="categoriesStatus" value=<?php echo $row['category_id'] ?> ><?php echo $row['category_name'] ?></option>
-                <?php } ?>
-				      </select>
-        <!-- end dropdown -->
-      <input type="text" name="itemname" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" name="quantity" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <!-- dropdown -->
-      <select class="form-control mb-2" id="unitstatus" name="unit_id" style="width:50%;">
-                          <option value="">SELECT UNIT</option>
-                          <?php
-                          $sql = mysqli_query($conn, $query3);
-                         while($row = mysqli_fetch_assoc($sql)){ ?>  
-				      	<option value=<?php echo $row['unit_id']; ?>><?php echo $row['unit_name'] ?></option>
-                        <?php } ?>
-				      </select>
-        <!-- end dropdown -->
-      <input type="text" name="vendor" placeholder="Vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="number" name="rate" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      </div>
-      <div class="modal-footer">
-        <button type="button" onclick="closebox()" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="submit"  class="btn btn-primary">Save changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-
-    </div>
 </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="jquery-3.4.1.min.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -374,61 +161,92 @@ $sql10 = mysqli_query($conn, $query5);
 
     <script type="text/javascript">
         feather.replace();
-        function closemodal(){
-          $('.editmodal').removeClass('show');
-          document.getElementById("editmodal").style.display = "none";
-        }
 
-        function closebox(){
-          $('.editmodal').removeClass('show');
-          document.getElementById("editmodal").style.display = "none";
-        }
+// slider for div
 
+$(document).ready(function(){
+  $('#slider').hide();
+  $('#butclose').click(function(){
+    $('#slider').slideUp("slow");
+  });
+  $('#additem').click(function(){   
+      $('#slider').slideToggle("slow");
+  });
 
-        $('.edit').click( (e)=>{
-          console.log("Clicked");
-          let textvalues = displayData(e);
-          console.log("text",textvalues);
-          $('.editmodal').addClass('show');
-          document.getElementById("editmodal").style.display = "block";
+});
 
-          
-                    
-                    let s2 = $("input[name*='itemname']");
-                    let s3 = $("input[name*='quantity']");
-                    let s4 = $("input[name*='vendor']");
-                    let s5 = $("input[name*='rate']");
+// table insertion using ajax
 
-                    
-                    // $('#categoriesStatus').val(textvalues[1]);
-                    // console.log("Selected",$('#categoriesStatus').val(textvalues[1]));
-                    s2.val(textvalues[2]);
-                    s3.val(textvalues[3]);
-                    s4.val(textvalues[4]);
-                    s5.val(textvalues[5]);
-            
-           
-            
-          
-              
+  function tp(){
+    $.ajax({
+		url: "viewtable.php",
+		type: "POST",
+		cache: false,
+		success: function(data){
+			$('#table').html(data); 
+		}
+	});
+  }
+
+  tp();
+	$('#butsave').on('click', function() {
+    $("#butsave").attr("disabled", "disabled");
+    var category = $('#category').val();
+		var itemname = $('#itemname').val();
+		var quantity = $('#quantity').val();
+		var unit = $('#unit').val();
+		var vendor = $('#vendor').val();
+    var rate = $('#rate').val();
+		
+			$.ajax({
+				url: "additem.php",
+				type: "POST",
+				data: {
+          category: category,
+					itemname: itemname,
+					quantity: quantity,
+					unit: unit,
+					vendor: vendor,
+          rate:rate				
+				},
+				cache: false,
+				success: function(dataResult){
+						$("#butsave").removeAttr("disabled");
+            $('#formvalues').find('input:text').val('');
+            $("#success").show();
+						$('#success').html('Data added successfully !');
+            tp();
+				}
+			});
+		
+	});
+
+function addintocat(){
+  //logic to add the category in category dropdwon without refresh page
+  
+}
+
+  $(document).ready(function(){
+      $("#addcategorybtn").click(function(){
+        var addcategory = $('#addcategory').val();
+        $.ajax({
+          url:"addcategories.php",
+          type:"post",
+          data:{
+            category_name:addcategory
+          },
+          cache:false,
+          success: function(data){
+            $('#addcategory').val('');
+            $("#success").show();
+						$('#success').html('Category Added !');
+            addintocat();
+
+          }
         });
 
-        function displayData(e){
-            let id = 0;
-            const td = $("#tbody td");
-            let textvalues = [];
-
-            for(const value of td){
-              
-              
-                if(value.dataset.id == e.target.dataset.id){
-                    textvalues[id++] = value.textContent;
-
-                }
-            }
-            
-            return textvalues;
-        }
+      });
+  });
     </script>
 </body>
 

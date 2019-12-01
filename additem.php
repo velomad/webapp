@@ -2,20 +2,15 @@
 
 include("db.php");
 
-$category_id = $_POST['category_id'];
-$item_name = $_POST['item_name'];
+$category = $_POST['category'];
+$itemname = $_POST['itemname'];
 $quantity = $_POST['quantity'];
-$unit_id = $_POST['unit_id'];
+$unit = $_POST['unit'];
 $vendor = $_POST['vendor'];
 $rate = $_POST['rate'];
 
 
-
-if(isset($_POST['submit'])){
-
-$query = " INSERT INTO additem (category_id, item_name, quantity, unit_id, vendor, rate) VALUES ('$category_id','$item_name','$quantity','$unit_id','$vendor','$rate') ";
+$query = " INSERT INTO additem (category_id, item_name, quantity, unit_id, vendor, rate) VALUES ('$category','$itemname','$quantity','$unit','$vendor','$rate') ";
 mysqli_query($conn, $query);
-header('Location:purchase.php');
 
-}
 ?>
