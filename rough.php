@@ -247,3 +247,131 @@ function closemodal(){
 </div>
 
 <!-- Modal -->
+
+
+<?php
+  while($row = $sql3->fetch_assoc()){ ?>
+    <tr>
+      <td><?php echo $row['dates'] ?></td>
+      <th><?php echo $row['category_id'] ?></th>
+      <td><?php echo $row['item_name'] ?></td>
+      <td><?php echo $row['quantity'] ?></td>
+      <td><?php echo $row['client'] ?></td>
+      <td><?php echo $row['rate'] ?></td>
+      <td><div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    action
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" data-toggle="modal" data-target="#edit" id="#edit">edit</a>
+    <a class="dropdown-item" data-toggle="modal" data-target="#remove" id="#remove">remove</a> 
+  </div>
+</div>
+</td>
+    </tr>
+  <?php } ?>
+
+
+  
+    <!-- Modal -->
+<div class="modal fade" id="remove" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">remove</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>Are you sure ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+ <!-- Modal -->
+ <div class="modal fade" id="generatesale" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Generate Sale</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form action="addsales.php" method="POST">
+      <input type="hidden" placeholder="Quantity" name="item_id" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="categoriesStatus" name="categoriesstatus_sales" style="width:50%;">  
+				      	<option value="">SELECT CATEGORY</option>
+                <?php while($row = $sql->fetch_assoc()){ ?>
+                  <option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
+				      	<?php } ?>
+				      </select>
+        <!-- end dropdown -->
+
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="categoriesitem" name="categoriesitem" style="width:50%;">  
+				      	<option value="">SELECT ITEM</option>
+                <?php while($row = $sql2->fetch_assoc()){ ?>
+                  <option value=<?php echo $row['item_id']; ?>><?php echo $row['item_name'] ?></option>
+				      	<?php } ?>
+				      </select>
+        <!-- end dropdown -->
+
+      <input type="text" placeholder="Quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Client" name="client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="number" placeholder="Rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+        <!-- Modal -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="categoriesStatus" name="categoriesStatus" style="width:50%;">
+				      	<option value="">SELECT CATEGORY</option>
+				      	<option value="1">Available</option>
+				      	<option value="2">Not Available</option>
+				      </select>
+        <!-- end dropdown -->
+      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      <input type="text" placeholder="Client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+    </div>
+</div>

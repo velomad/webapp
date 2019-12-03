@@ -15,6 +15,8 @@ $query = "SELECT sum(rate*quantity) AS value_sum FROM additem";
 
 $sql = mysqli_query($conn, $query);
 
+$query2 = "SELECT * FROM categories";
+
 
 ?>
 <!DOCTYPE html>
@@ -34,7 +36,13 @@ $sql = mysqli_query($conn, $query);
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
+<style>
+button:hover{
+    background: black;
+    color:white;
+    border-color:yellow;
+}
+</style>
 </head>
 <body>
 
@@ -64,12 +72,29 @@ $sql = mysqli_query($conn, $query);
         <p style="background-color:#323232; padding:10px 40px; border-radius:5px; width:30%; text-align:center; font-size:20px; color:white;">Other Cost <span class="badge badge-warning">50</span></p>
     </div>
 
+<div class="row">
+
+ <!-- dropdown -->
+ <select class="form-control mb-2 mr-5" id="category" name="category" style="width:30%;">
+                          <option value="">SELECT CATEGORY</option>
+                          <?php
+                          $sql2 = mysqli_query($conn, $query2);
+                         while($row = mysqli_fetch_assoc($sql2)){ ?>  
+				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
+                        <?php } ?>
+				      </select>
+              <button class="btn btn-pirmary" id="viewgraph" style="height:38px; border-radius:0px;  width:15%;">View Category Graph</button>
+              <button class="btn btn-pirmary" id="viewtable" style="height:38px; border-radius:0px; width:15%;">View Table</button>
+              
+      </div>
+        <!-- end dropdown -->
+
 <!-- purchase sale chart -->
 
-<?php include("purchasesalechart.php"); ?>
+<!-- <?php include("purchasesalechart.php"); ?> -->
 
 <!-- end purchase sale chart -->
-   
+
 </div>
 
 <!-- End content -->

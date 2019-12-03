@@ -11,13 +11,11 @@ else
 } 
 
 $query = " SELECT * FROM categories ";
-$sql = mysqli_query($conn, $query);
 
-$query2 = "SELECT item_id, item_name FROM additem";
-$sql2 = mysqli_query($conn, $query2);
 
-$query3 = "SELECT * FROM sales";
+$query2 = " SELECT * FROM additem ";
 
+// $query3 = "SELECT * FROM sales";
 
 ?>
 <!DOCTYPE html>
@@ -59,160 +57,71 @@ $query3 = "SELECT * FROM sales";
   </li>
 </ul>
 
-<div class="container">
-    <div class="row">
-        <p style="background-color:#323232; padding:10px 50px; border-radius:5px; width:100%; text-align:left; font-size:20px; color:white;">SALES</p>
-    </div>
 
-<div class="row">
-<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#generatesale">
+<div class="container">
+<p style="background-color:#323232; padding:10px 50px; border-radius:5px; width:100%; text-align:left; font-size:20px; color:white;">SALES</p>
+
+<button type="button" class="btn btn-primary mb-3" id="gensale">
   Generate Sale
 </button>
-        <!-- table -->
-<?php $sql3 = mysqli_query($conn, $query3);
- ?>
-<table class="table">
+
+<div class="row slider">
+<div class="col-lg-6">
+  <form id="formvalues">
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="category" name="category">
+                          <option value="">SELECT CATEGORY</option>
+                          <?php
+                          $sql = mysqli_query($conn, $query);
+                         while($row = mysqli_fetch_assoc($sql)){ ?>  
+				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
+                        <?php } ?>
+				      </select>
+        <!-- end dropdown -->
+     <!-- dropdown -->
+     <select class="form-control mb-2" id="itemname" name="itemname">
+                          <option value="">SELECT ITEM</option>
+                          <?php
+                          $sql2 = mysqli_query($conn, $query2);
+                         while($row = mysqli_fetch_assoc($sql2)){ ?>  
+				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['item_name'] ?></option>
+                        <?php } ?>
+				      </select>
+        <!-- end dropdown -->
+      <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      
+        
+      <input type="text" placeholder="Client" id="client" name="client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Rate" id="rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+    
+    
+        <button type="button" id="butclose" class="btn btn-secondary">Close</button>
+        <button  id="butsave" class="btn btn-primary">Save changes</button>
+        </form>
+        <div class="alert alert-success alert-dismissible mt-4" id="success" style="display:none;">
+	           <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        </div>
+        </div>
+      </div>
+<table class="table mt-3">
   <thead class="thead-light">
     <tr>
       <th scope="col">Date &nbsp; | &nbsp; Time</th>
       <th scope="col">Category</th>
       <th scope="col">Item</th>
       <th scope="col">Quantity</th>
+      <th scope="col">Unit</th>
       <th scope="col">client</th>
       <th scope="col">Rate</th>
+      <th scope="col">Value</th>
       <th scope="col">option</th>
     </tr>
   </thead>
-  <tbody>
-  <?php
-  while($row = $sql3->fetch_assoc()){ ?>
-    <tr>
-      <td><?php echo $row['dates'] ?></td>
-      <th><?php echo $row['category_id'] ?></th>
-      <td><?php echo $row['item_name'] ?></td>
-      <td><?php echo $row['quantity'] ?></td>
-      <td><?php echo $row['client'] ?></td>
-      <td><?php echo $row['rate'] ?></td>
-      <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    action
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" data-toggle="modal" data-target="#edit" id="#edit">edit</a>
-    <a class="dropdown-item" data-toggle="modal" data-target="#remove" id="#remove">remove</a> 
-  </div>
-</div>
-</td>
-    </tr>
-  <?php } ?>
+  <tbody id="table">
+  
   </tbody>
 </table>
-
-        <!-- table -->
-
-    <!-- Modal -->
-<div class="modal fade" id="remove" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">remove</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <p>Are you sure ?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary">Yes</button>
-      </div>
-    </div>
-  </div>
 </div>
-<!-- Modal -->
-
- <!-- Modal -->
- <div class="modal fade" id="generatesale" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Generate Sale</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form action="addsales.php" method="POST">
-      <input type="hidden" placeholder="Quantity" name="item_id" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      
-        <!-- dropdown -->
-        <select class="form-control mb-2" id="categoriesStatus" name="categoriesstatus_sales" style="width:50%;">  
-				      	<option value="">SELECT CATEGORY</option>
-                <?php while($row = $sql->fetch_assoc()){ ?>
-                  <option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
-				      	<?php } ?>
-				      </select>
-        <!-- end dropdown -->
-
-        <!-- dropdown -->
-        <select class="form-control mb-2" id="categoriesitem" name="categoriesitem" style="width:50%;">  
-				      	<option value="">SELECT ITEM</option>
-                <?php while($row = $sql2->fetch_assoc()){ ?>
-                  <option value=<?php echo $row['item_id']; ?>><?php echo $row['item_name'] ?></option>
-				      	<?php } ?>
-				      </select>
-        <!-- end dropdown -->
-
-      <input type="text" placeholder="Quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Client" name="client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="number" placeholder="Rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-
-        <!-- Modal -->
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- dropdown -->
-        <select class="form-control mb-2" id="categoriesStatus" name="categoriesStatus" style="width:50%;">
-				      	<option value="">SELECT CATEGORY</option>
-				      	<option value="1">Available</option>
-				      	<option value="2">Not Available</option>
-				      </select>
-        <!-- end dropdown -->
-      <input type="text" placeholder="Item Name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="text" placeholder="Quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="text" placeholder="Client" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      <input type="number" placeholder="Rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-
-    </div>
-</div>
-
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="jquery-3.4.1.min.js"></script>
@@ -223,6 +132,69 @@ $query3 = "SELECT * FROM sales";
 
     <script type="text/javascript">
         feather.replace();
+
+        // slider menu for adding sales
+
+        $(document).ready(function(){
+          $('.slider').hide();
+          
+          $('#gensale').click(function(){
+            $('.slider').slideToggle("slow");
+          });
+          $('#butclose').click(function(){
+            $('.slider').slideUp("slow");
+          })
+        });
+
+
+// ajax fo inserting values in db
+
+
+
+    function tp(){
+    $.ajax({
+		url: "viewsalestable.php",
+		type: "POST",
+		cache: false,
+		success: function(data){
+			$('#table').html(data); 
+		}
+	});
+  }
+
+
+tp();
+$('#butsave').on('click', function() {
+    $("#butsave").attr("disabled", "disabled");
+    var category = $('#category').val();
+		var itemname = $('#itemname').val();
+		var quantity = $('#quantity').val();
+		var client = $('#client').val();
+    var rate = $('#rate').val();
+		
+			$.ajax({
+				url: "addsales.php",
+				type: "POST",
+				data: {
+          category: category,
+					itemname: itemname,
+					quantity: quantity,
+					client: client,
+          rate:rate				
+				},
+				cache: false,
+				success: function(dataResult){
+						$("#butsave").removeAttr("disabled");
+            $('#formvalues').find('input:text').val('');
+            $("#success").show();
+						$('#success').html('Data added successfully !');
+            tp();
+				}
+			});
+		
+	});
+
+
     </script>
 </body>
 

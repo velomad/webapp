@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(0);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 session_start(); 
@@ -77,6 +78,10 @@ $sql10 = mysqli_query($conn, $query5);
 </ul>
 
 <div class="container">
+<div class="row">
+        <p style="background-color:#323232; padding:10px 50px; border-radius:5px; width:100%; text-align:left; font-size:20px; color:white;">PURCHASE</p>
+    </div>
+
 <div class="btn-group btn-group-md">
 <button type="button" class="btn btn-primary" id="additem">add Item</button>
 <button type="button" class="btn btn-primary pull-right">Remove category</button>
@@ -86,8 +91,9 @@ $sql10 = mysqli_query($conn, $query5);
   <div class="row mt-3" id="slider">
   <div class="col-lg-6">
   <form id="formvalues">
+  <input type="hidden" name="id" value="<?php echo $id; ?>">
         <!-- dropdown -->
-        <select class="form-control mb-2" id="category" name="category">
+        <select class="form-control mb-2" id="category" name="category" value="<?php echo $category; ?>">
                           <option value="">SELECT CATEGORY</option>
                           <?php
                           $sql = mysqli_query($conn, $query);
@@ -96,10 +102,10 @@ $sql10 = mysqli_query($conn, $query5);
                         <?php } ?>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Item Name" id="itemname" name="itemname" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Item Name" id="itemname" name="itemname" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $itemname; ?>">
+      <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $quantity; ?>">
         <!-- dropdown -->
-        <select class="form-control mb-2" id="unit" name="unit">
+        <select class="form-control mb-2" id="unit" name="unit" value="<?php echo $unit; ?>">
                           <option value="">SELECT UNIT</option>
                           <?php
                           $sql = mysqli_query($conn, $query3);
@@ -108,8 +114,8 @@ $sql10 = mysqli_query($conn, $query5);
                         <?php } ?>
 				      </select>
         <!-- end dropdown -->
-      <input type="text" placeholder="Vendor" id="vendor" name="vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
-      <input type="text" placeholder="Rate" id="rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+      <input type="text" placeholder="Vendor" id="vendor" name="vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $vendor; ?>">
+      <input type="text" placeholder="Rate" id="rate" name="rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $rate; ?>">
     
     
         <button type="button" id="butclose" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -221,13 +227,11 @@ $(document).ready(function(){
 		
 	});
 
-function addintocat(){
-  //logic to add the category in category dropdwon without refresh page
-  
-}
+// adding category using
 
   $(document).ready(function(){
       $("#addcategorybtn").click(function(){
+        
         var addcategory = $('#addcategory').val();
         $.ajax({
           url:"addcategories.php",
@@ -240,13 +244,42 @@ function addintocat(){
             $('#addcategory').val('');
             $("#success").show();
 						$('#success').html('Category Added !');
-            addintocat();
+            location.reload();
 
           }
         });
 
       });
   });
+
+
+
+
+  // adding units using ajax
+
+  $(document).ready(function(){
+      $("#addunitbtn").click(function(){
+        var addunit = $('#addunit').val();
+        $.ajax({
+          url:"addunit.php",
+          type:"post",
+          data:{
+            unit_name:addunit
+          },
+          cache:false,
+          success: function(data){
+            $('#addcategory').val('');
+            $("#success").show();
+						$('#success').html('unit Added !');
+            location.reload();
+
+          }
+        });
+
+      });
+  });
+
+
     </script>
 </body>
 

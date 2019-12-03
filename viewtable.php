@@ -1,7 +1,22 @@
 <?php
 include("db.php");
 
-$query2 = "SELECT * FROM additem";
+if(isset($_GET['edit'])){
+  $id = $_GET['edit'];
+
+  $query3 = "select * from additem where item_id = $id";
+  $sql3 = mysqli_query($conn, $query3);
+  $row = mysqli_fetch_assoc($sql3);
+
+$category = $row['category'];
+$itemname = $row['itemname'];
+$quantity = $row['quantity'];
+$unit = $row['unit'];
+$vendor = $row['vendor'];
+$rate = $row['rate'];
+}
+
+$query2 = "SELECT * FROM additem ";
 $sql2 = mysqli_query($conn, $query2);
 
 $query4 = "SELECT item_id,dates,category_name,item_name,quantity,vendor,rate FROM additem 
@@ -31,8 +46,8 @@ if($sql2->num_rows > 0){
     action
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="edit dropdown-item"  data-id="<?php echo $row['item_id'];?>" id="edit">edit</a>
-    <a class="dropdown-item" data-toggle="modal" data-target="#remove" id="#remove">remove</a> 
+    <a href="purchase.php?edit=<?php echo $row['item_id'] ?>" class="edit dropdown-item"  data-id="<?php echo $row['item_id'];?>"  id="edit">edit</a>
+    <a href="additem.php?del=<?php echo $row['item_id'] ?>" class="dropdown-item" id="#remove">remove</a> 
   </div>
 </div>
 </td>
@@ -43,5 +58,6 @@ if($sql2->num_rows > 0){
     else{
         echo "0 results";
     }
+    ?>
 
-?>
+
