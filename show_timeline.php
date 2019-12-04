@@ -3,6 +3,7 @@ include("db.php");
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 //echo $id;
 //exit();
+
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)
 {
@@ -13,7 +14,6 @@ else
 {
   header("Location:index.php");
 } 
-
 $query = "SELECT * FROM showtimeline";
 
 $run = mysqli_query($conn,$query);
@@ -41,6 +41,17 @@ $run = mysqli_query($conn,$query);
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     <script src="/dist/js/timeline.min.js"></script>
 <link href="/dist/css/timeline.min.css" rel="stylesheet" />
+
+<style>
+
+
+
+img{
+  position:Absolute;
+  margin-left:332px;
+  top:80px;
+}
+</style>
   </head>
   <body>
 
@@ -74,7 +85,9 @@ $run = mysqli_query($conn,$query);
 
 <div class="container">
   <div class="row">
-<?php while($row =  mysqli_fetch_assoc($run)) { ?>  
+<?php 
+$count = 0;
+while($row =  mysqli_fetch_assoc($run)) { ?>  
   <div class="col-lg-4">
   <div class="card bg-primary mt-3">
     <div class="card-body text-white">
@@ -83,11 +96,19 @@ $run = mysqli_query($conn,$query);
           <h6> <?php echo $row['dates']; ?> </h6>
           <p> <?php echo $row['note']; ?> </p>
         </p>
+        <img src="./css/rightarrow.svg" alt="next_arrow" width="25px">
+       
+    </div>
+    <div class="line" style="color:white; padding:10px">
+      <?php  $count++; echo "In Process - " .$count;?>
     </div>
     </div>
+    
   </div>
+
 <?php } ?>
 </div>
+
 </div>
 
   

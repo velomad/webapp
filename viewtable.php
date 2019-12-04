@@ -47,7 +47,7 @@ if($sql2->num_rows > 0){
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a href="purchase.php?edit=<?php echo $row['item_id'] ?>" class="edit dropdown-item"  data-id="<?php echo $row['item_id'];?>"  id="edit">edit</a>
-    <a href="additem.php?del=<?php echo $row['item_id'] ?>" class="dropdown-item" id="#remove">remove</a> 
+    <a href="additem.php?del=<?php echo $row['item_id'] ?>" onclick="delask()" class="dropdown-item" id="#remove">remove</a> 
   </div>
 </div>
 </td>

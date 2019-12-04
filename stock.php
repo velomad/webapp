@@ -93,7 +93,11 @@ button:hover{
 
 <!-- <?php include("purchasesalechart.php"); ?> -->
 
-<!-- end purchase sale chart -->
+
+<!-- line chart  -->
+
+<?php include("categorychart.php"); ?>
+
 
 </div>
 
@@ -101,6 +105,8 @@ button:hover{
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="jquery-3.4.1.min.js"></script>
+    <script src="path/to/chartjs/dist/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -108,6 +114,9 @@ button:hover{
 
     <script type="text/javascript">
         feather.replace();
+
+
+        
     </script>
 </body>
 

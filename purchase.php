@@ -155,6 +155,8 @@ $sql10 = mysqli_query($conn, $query5);
 
   </tbody>
 </table>
+<!-- Modal -->
+
 
 </div>
 
@@ -278,6 +280,12 @@ $(document).ready(function(){
 
       });
   });
+
+function delask(){
+  alert("Are you sure ?");
+}
+
+
 
 
     </script>
