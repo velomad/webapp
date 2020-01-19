@@ -88,6 +88,13 @@ $sql10 = mysqli_query($conn, $query5);
 </div>
 
 
+<div class="input-group mb-3 mt-3">
+  <input type="text" id="mysearch" class="form-control" placeholder="Search" onkeyup="searchFunction()">
+  <div class="input-group-append">
+    <button class="btn btn-success" type="submit">Go</button>
+  </div>
+</div>
+
   <div class="row mt-3" id="slider">
   <div class="col-lg-6">
   <form id="formvalues">
@@ -285,7 +292,12 @@ function delask(){
   alert("Are you sure ?");
 }
 
+const searchFunction = () =>{
+  let filter = document.getElementById("mysearch").value.toUpperCase();
+  let mytable = document.getElementById("table");
+  let tr = mytable.getElementByTagName("tr");
 
+}
 
 
     </script>

@@ -1,6 +1,6 @@
 <?php session_start(); 
 include("db.php");
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+
 //echo $id;
 //exit();
 
@@ -13,8 +13,9 @@ if($userprofile == true)
 else
 {
   header("Location:index.php");
-} 
-$query = "SELECT * FROM showtimeline";
+}
+$id = isset($_GET['id']) ? $_GET['id'] : '';
+$query = "SELECT * FROM showtimeline where timeline_id = $id";
 
 $run = mysqli_query($conn,$query);
 
