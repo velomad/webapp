@@ -92,29 +92,30 @@ else
   </div>
   <div class="card-body">
 
-            <form action="insert.php" method="POST" name="add-project-form">
+            <!-- <form id="myForm" method="POST" name="add-project-form"> -->
                     <div class="input-group mb-3">
                      
                             
-                            <input type="text" class="form-control" placeholder="Title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
+                            <input type="text" class="form-control" placeholder="Title" name="title" id="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
+                            <span id="ex"></span>
                           </div>
 
                           <div class="input-group mb-3">
                                 
-                                <input type="date" class="form-control" placeholder="Deadline" name="deadline" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
+                                <input type="date" class="form-control" placeholder="Deadline" id="deadline" name="deadline" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">
                               </div>
                               
                           <div class="input-group mb-3">
                          
-                          <textarea class="form-control" placeholder="Description" aria-label="With textarea" name="info" required  autocomplete="off"></textarea>
+                          <textarea class="form-control" placeholder="Description" aria-label="With textarea" id="info" name="info" required  autocomplete="off"></textarea>
                         </div>
             
                         <div class="row">
                                 <div class="col text-center">
-                        <button type="submit" name="submit" class="btn btn-outline-primary" onclick="submitForm()">Submit</button>
+                        <button type="submit" name="submit" onclick="insertSchool()" class="btn btn-outline-primary" id="submitForm">Submit</button>
                                 </div>
                         </div>
-            </form>
+            <!-- </form> -->
 
 
     <!-----------End of Card view panel--------->
@@ -131,7 +132,60 @@ else
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        feather.replace();
+
+
+      function insertSchool(){
+
+        var title=document.getElementById("title").value;
+        var deadline=document.getElementById("deadline").value;
+        var info=document.getElementById("info").value;
+        alert(title);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              console.log(this.responseText);
+              if(this.responseText=='The title already exist'){
+                document.getElementById("ex").innerHTML=this.responseText;
+              }else{
+                location.reload();
+              }
+            }
+        };
+        xmlhttp.open("GET","insert.php?title="+title+"&info="+info+"&deadline="+deadline,true);
+        xmlhttp.send();
+
+      }
+
+
+
+//             feather.replace();
+
+//     $(document).ready(function(){
+
+//         $('#myForm').submit(function(){
+//           var values = $(this).serialize();
+          
+// $.ajax
+// ({ 
+//     url: 'insert.php',
+//     data: values,
+//     type: 'post',
+//     success: function(data)
+//     {
+//       alert(result);
+//         $('.modal-box').text(result).fadeIn(700, function() 
+//         {
+//             setTimeout(function() 
+//             {
+//                 $('.modal-box').fadeOut();
+//             }, 2000);
+//         });
+//     },
+//     error: function(result)
+//     alert(error);
+// });
+// });
+//     });
     </script>
 </body>
 

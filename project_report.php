@@ -117,7 +117,18 @@ else
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="row pt-3 ml-3"><a class="pr-3" href="view_project.php"><button class="btn btn-success">projects</button></a> 
     <a class="pr-3" href="timeline.php"><button class="btn btn-success">View Tiemline</button></a>
-    <a href="inventory_insights.php"><button class="btn btn-success">Inventory insights</button></a></div>
+    <a href="inventory_insights.php"><button class="btn btn-success">Inventory insights</button></a>
+  
+    <h4 style="margin-left:60px;">
+      ID : <?php echo $row['school_id'] ?>
+    </h4>
+    <h4 style="margin-left:100px;">
+      Password : <?php echo $row['school_password']; ?>
+    </h4>
+
+  
+  
+  </div>
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         
      
