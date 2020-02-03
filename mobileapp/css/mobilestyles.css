@@ -1,0 +1,97 @@
+*{
+    padding: 0;
+    margin: 0; 
+    box-sizing: border-box;
+    border:none !important;
+    outline: none;
+}
+
+.ag-cell-focus,.ag-cell-no-focus{
+    border:none !important;
+    }
+
+    .ag-cell:focus{
+    border:none !important;
+    outline: none;
+    }
+
+
+body{
+    display: grid;
+    overflow-x:hidden;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.grid{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.text{
+    padding: 10px 10px;
+    grid-column: 1/-1;
+    text-align: center;
+}
+
+.one{
+    margin: auto;
+    padding: 10px 10px;
+    grid-column: 1/-1;
+}
+
+.two{
+    padding: 10px 10px;
+    margin: auto;
+    grid-column: 1/-1;
+}
+
+.three{
+    padding: 10px 10px;
+    margin: auto;
+    grid-column: 1/-1;
+}
+
+.textcolor{
+    color: whitesmoke;
+}
+
+.textcolor:hover{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+button{
+    width: 200px;
+}
+
+/*-------------------------------- u_distribution css starts here----------------------------------- */
+
+.distribution_grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+}
+
+.heading{
+    text-align: center;
+    grid-column: 1/-1;
+}
+
+.general_info_form{
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-auto-rows: minmax(50px, auto);
+
+}
+
+.firstname{
+    grid-column: 1/-1;
+}
+
+.lastname{
+    grid-column: 1/-1;
+}
+

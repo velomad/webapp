@@ -27,7 +27,7 @@
 
     <div class="container">
         
-                    <form  accept-charset="UTF-8"  role="form" class="form-signin" method="POST" action="">
+                    <form  accept-charset="UTF-8"  role="form" class="form-signin" method="POST" action="mobilelogincheck.php">
                         <div class="titles">
                             
                             <h3>School Login</h3>

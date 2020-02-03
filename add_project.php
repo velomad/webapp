@@ -139,7 +139,7 @@ else
         var title=document.getElementById("title").value;
         var deadline=document.getElementById("deadline").value;
         var info=document.getElementById("info").value;
-        alert(title);
+        // alert(title);
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
