@@ -7,11 +7,6 @@ $query = 'SELECT * FROM projects';
 
 $result = mysqli_query($conn, $query);
  
-<<<<<<< HEAD
-
-
-=======
->>>>>>> rsm
 if($_SESSION['schoolid']){
 ?>
 <!DOCTYPE html>
