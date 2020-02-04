@@ -20,7 +20,7 @@ if($_SESSION['schoolid']){
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/mobilestyles.css">
+    <link rel="stylesheet" href="css/mobilestyle.css">
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -35,11 +35,25 @@ if($_SESSION['schoolid']){
 <div class="grid">
 
 </div>
-
+<!-- 
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
   <div class="banner">Peaks&Arrow</div>
   <div class="logout"><a href="mobilelogout.php">Logout</a></div>
-</nav>
+</nav> -->
+
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Peaks & Arrow</h5>
+      <a href="mobilelogout.php"><div class="logout">Logout</div></a>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
 
 <div class="text" id="welcometext">xyz school uniform portal</div>
 

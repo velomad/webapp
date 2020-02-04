@@ -16,7 +16,7 @@ if($_SESSION['schoolid']){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
+    <title>Uniform Issued</title>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -35,37 +35,38 @@ if($_SESSION['schoolid']){
     <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="banner"><a href="mobiledashboard.php">Peaks&Arrow</a></div>
         <ul class="nav_menu">
-        <a href="u_distribution.php"><li>Start Distributon</li></a>
-        <a href="u_issued.php"><li>Uinform Issued</li></a>
-        <a href="u_distributed.php"><li>Uniform Distributed</li></a>
+            <a href="u_distribution.php">
+                <li>Start Distributon</li>
+            </a>
+            <a href="u_issued.php">
+                <li>Uinform Issued</li>
+            </a>
+            <a href="u_distributed.php">
+                <li>Uniform Distributed</li>
+            </a>
         </ul>
         <div class="logout"><a href="mobilelogout.php">Logout</a></div>
     </nav> -->
 
+    
     <div class="pos-f-t">
-        <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark p-4">
-                <h5 class="text-white h4">Peaks & Arrow</h5>
-                <a href="u_distribution.php">
-                    <li>Start Distributon</li>
-                </a>
-                <a href="u_issued.php">
-                    <li>Uinform Issued</li>
-                </a>
-                <a href="u_distributed.php">
-                    <li>Uniform Distributed</li>
-                </a>
-                <a href="mobilelogout.php"><div class="logout">Logout</div></a>
-            </div>
-        </div>
-        <nav class="navbar navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Peaks & Arrow</h5>
+      <a href="u_distribution.php"><li>Start Distributon</li></a>
+      <a href="u_issued.php"><li>Uinform Issued</li></a>
+      <a href="u_distributed.php"><li>Uniform Distributed</li></a>
+      <a href="mobilelogout.php"><div class="logout">Logout</div></a>
+  
     </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
+
 
     <div class="container">
         <div class="distribution_grid">
@@ -189,6 +190,7 @@ if($_SESSION['schoolid']){
 
         </form>
     </div>
+
 
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
