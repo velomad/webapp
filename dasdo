@@ -1,0 +1,161 @@
+[33mcommit 7feab7933a8c67b90088c7caa724a339ea45466f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Tue Feb 4 12:27:34 2020 +0530
+
+    clean tree
+
+[33mcommit dca6ae0e5170b9e677b9d70ea0028164aaa3ff52[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Tue Feb 4 11:56:00 2020 +0530
+
+    UI done for mobile app
+
+[33mcommit 8d57660c158a9968e3d7052c88aae2fb93d55778[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Mon Feb 3 18:11:00 2020 +0530
+
+    distribution page mobileapp
+
+[33mcommit 6148540723e67282f77fa352c8baa925bfacf69d[m[33m ([m[1;32mdev-velocity[m[33m)[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Sun Feb 2 17:40:10 2020 +0530
+
+    id pass givrn in ewbapp
+
+[33mcommit d67d64d8fd28e2a6142c6cac32d0fc0893b54e1d[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Sun Jan 19 10:55:10 2020 +0530
+
+    start of new phase
+
+[33mcommit 9c06203e6f27cec3ab27908bd13fd2090381a7b4[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Dec 5 00:01:34 2019 +0530
+
+    end of 1st phase
+
+[33mcommit d762fb41024a8b6b633524a8c304437ba3910a4b[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Tue Dec 3 19:54:20 2019 +0530
+
+    remove button done
+
+[33mcommit 0199fee91164ced7e71427c6fa9540b06ed30f49[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Sun Dec 1 12:27:16 2019 +0530
+
+    added ajax in purchase
+
+[33mcommit a0b862234e4f42a2c41d52b3b381360d993a28a6[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Wed Nov 27 21:30:25 2019 +0530
+
+    edit button
+
+[33mcommit 8b7cbd3081ee8058354f01a81f73a76958d23dbf[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Mon Nov 25 21:26:56 2019 +0530
+
+    new sql
+
+[33mcommit 8fef7dc0ae6145b1788c76bbb96d8515e21e5198[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Mon Nov 25 15:32:43 2019 +0530
+
+    done frnt end
+
+[33mcommit 558200209186b6e04f219d03c22932342cea38d8[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Mon Nov 25 13:41:14 2019 +0530
+
+    table functionality to be done
+
+[33mcommit f29df55a77303089b7842d461678150d23e9a4a2[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Mon Nov 25 13:39:08 2019 +0530
+
+    table functionality to be done
+
+[33mcommit adbb27c8a6b5656b47a0dffd404bd812b77d23c2[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Mon Nov 25 09:26:06 2019 +0530
+
+    monday morning before ajax
+
+[33mcommit b3232c4e8a6b7a0ebc981f931f5682d7a2010f05[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Sun Nov 24 17:46:48 2019 +0530
+
+    till sunday
+
+[33mcommit 6ca379b7145c5a80e720b8cf3be21c4a19c5c0f3[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Sat Nov 23 09:10:22 2019 +0530
+
+    sales page
+
+[33mcommit 4fb651b5f9641253358d1a0aa21efdb8541eb27c[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Fri Nov 22 23:22:00 2019 +0530
+
+    before nightout
+
+[33mcommit 8c118908c67a4bb66f0d2e28af0f0849932a6640[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Nov 21 14:59:39 2019 +0530
+
+    frnt end done
+
+[33mcommit 3c79dde2d0cddf85f38d6ee33a4cec21b12ab05a[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Nov 21 12:27:53 2019 +0530
+
+    new start
+
+[33mcommit eb280e6010be1a08e694eb359e89f00dcc003b9b[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Sun Nov 17 15:42:06 2019 +0530
+
+    table done
+
+[33mcommit 5dd93a503cf7fe530504d2d1a915cb6282601c37[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Sun Nov 17 14:32:51 2019 +0530
+
+    table uptill read work
+
+[33mcommit 35705fd2bcb623b839f04d39ea691d8a7638f592[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Fri Nov 15 14:56:25 2019 +0530
+
+    uptill timeline
+
+[33mcommit 6de1c5840072123e39f40d0b57f73ccc2859b1d4[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Nov 14 19:33:57 2019 +0530
+
+    final commit
+
+[33mcommit b1db58da1bec28d191313fd6722828222277484f[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Nov 14 18:56:53 2019 +0530
+
+    final commit
+
+[33mcommit 482521dd1b9edbc1a03b381aac9a15f2226d4b1d[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Nov 14 18:49:16 2019 +0530
+
+    third commit
+
+[33mcommit 05807e8da7235eb18a2b992bfa93b79be3ae14b7[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Nov 14 18:25:18 2019 +0530
+
+    second commit
+
+[33mcommit d0825959870079f8bfa2b2e3ef89aa0866d9fb72[m
+Author: velocity <sagaryc111@gmail.com>
+Date:   Thu Nov 14 14:13:32 2019 +0530
+
+    first commit
