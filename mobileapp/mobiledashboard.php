@@ -7,8 +7,11 @@ $query = 'SELECT * FROM projects';
 
 $result = mysqli_query($conn, $query);
  
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> rsm
 if($_SESSION['schoolid']){
 ?>
 <!DOCTYPE html>
@@ -64,10 +67,10 @@ if($_SESSION['schoolid']){
     <button type="button" class="btn btn-primary one"> <a class="textcolor" href="u_distribution.php">Start Distribution</a></button>
     </div>
     <div class="two">
-    <button type="button" class="btn btn-primary two"><a class="textcolor" href="#">Uniform Issued</a></button>
+    <button type="button" class="btn btn-primary two"><a class="textcolor" href="u_issued.php">Uniform Issued</a></button>
     </div>
     <div class="three">
-    <button type="button" class="btn btn-primary three"><a class="textcolor" href="#">Uniform Distributed</a></button>
+    <button type="button" class="btn btn-primary three"><a class="textcolor" href="u_distributed.php">Uniform Distributed</a></button>
     </div>
 
 
