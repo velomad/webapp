@@ -43,8 +43,6 @@ $run = mysqli_query($conn, $query);
 
 
 <div class="container mt-1">
-<?php $row = mysqli_fetch_assoc($run) ?>
-<p class=""><?php echo $row['id']; ?>&nbsp;<?php echo $row['names']; ?>&nbsp;<?php echo $row['pnumber']; ?></p>
 
 </div>
 
