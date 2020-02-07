@@ -68,19 +68,13 @@ if($_SESSION['schoolid']){
             <div class="form-group row">
                 <label for="inputText" class="col-sm-2 col-form-label">First Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="First Name">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="First Name" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputText" class="col-sm-2 col-form-label">Last Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Last Name">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="Last Name" required>
                 </div>
             </div>
 
@@ -89,13 +83,13 @@ if($_SESSION['schoolid']){
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required>
                 <label class="form-check-label" for="exampleRadios1">
                     Male
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" required>
                 <label class="form-check-label" for="exampleRadios2">
                     Female
                 </label>
@@ -211,7 +205,7 @@ if($_SESSION['schoolid']){
                     <option>5</option>
                 </select>
             </div>
-
+        <button class="btn btn-primary" name="submit">Submit</button>
         </form>
     </div>
 
