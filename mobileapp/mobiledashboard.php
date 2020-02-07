@@ -33,45 +33,36 @@ if($_SESSION['schoolid']){
 
 <body>
 
-<div class="grid">
 
-</div>
-<!-- 
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-  <div class="banner">Peaks&Arrow</div>
-  <div class="logout"><a href="mobilelogout.php">Logout</a></div>
-</nav> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="mobiledashboard.php">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="u_distribution.php">Start Distribution</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="u_issued.php">Issued Uniform</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="u_distributed.php">Distributed Uniform</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mobilelogout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="pos-f-t">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h5 class="text-white h4">Peaks & Arrow</h5>
-      <a href="mobilelogout.php"><div class="logout">Logout</div></a>
+    <div class="container mt-3">
+      <div class="text-center">
+        <p>xyz School uniform portal</p>
+      </div>
     </div>
-  </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </nav>
-</div>
-
-<div class="text" id="welcometext"><?php echo $_SESSION['schoolid']; ?> school uniform portal</div>
-
-
-    <div class="one">
-    <button type="button" class="btn btn-primary one"> <a class="textcolor" href="u_distribution.php">Start Distribution</a></button>
-    </div>
-    <div class="two">
-    <button type="button" class="btn btn-primary two"><a class="textcolor" href="u_issued.php">Uniform Issued</a></button>
-    </div>
-    <div class="three">
-    <button type="button" class="btn btn-primary three"><a class="textcolor" href="u_distributed.php">Uniform Distributed</a></button>
-    </div>
-
-
-</div>
-
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="jquery-3.4.1.min.js"></script>

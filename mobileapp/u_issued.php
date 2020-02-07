@@ -32,63 +32,51 @@ if($_SESSION['schoolid']){
 
 <body>
 
-    <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <div class="banner"><a href="mobiledashboard.php">Peaks&Arrow</a></div>
-        <ul class="nav_menu">
-            <a href="u_distribution.php">
-                <li>Start Distributon</li>
-            </a>
-            <a href="u_issued.php">
-                <li>Uinform Issued</li>
-            </a>
-            <a href="u_distributed.php">
-                <li>Uniform Distributed</li>
-            </a>
-        </ul>
-        <div class="logout"><a href="mobilelogout.php">Logout</a></div>
-    </nav> -->
-
-    
-    <div class="pos-f-t">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h5 class="text-white h4">Peaks & Arrow</h5>
-      <a href="u_distribution.php"><li>Start Distributon</li></a>
-      <a href="u_issued.php"><li>Uinform Issued</li></a>
-      <a href="u_distributed.php"><li>Uniform Distributed</li></a>
-      <a href="mobilelogout.php"><div class="logout">Logout</div></a>
-    </div>
-  </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </nav>
-</div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="mobiledashboard.php">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="u_distribution.php">Start Distribution</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="u_issued.php">Issued Uniform</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="u_distributed.php">Distributed Uniform</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mobilelogout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
     <div class="container">
-        <div class="issued_grid">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary bg-primary" type="button"
-                        id="button-addon1">Search</button>
-                </div>
-                <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
-                    aria-describedby="button-addon1" autofocus>
-            </div>
 
-            <a href="student_info.php"><div class="card">
+
+        <div class="text-left mt-3">
+            <input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search">
+            <button class="btn btn-outline-success  my-2 my-sm-2 " type="submit">Search Student</button>
+        </div>
+
+        <a class="student-card" href="student_info.php">
+            <div class="card">
                 <div class="card-header">
-                    Name : Sagar Chavan
+                    <p>Name : Sagar Chavan</p>
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote">
                         <p>Phone No : 1235425415</p>
                     </blockquote>
                 </div>
-            </div></a>
-        </div>
+            </div>
+        </a>
     </div>
 
 

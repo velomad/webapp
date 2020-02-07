@@ -32,161 +32,185 @@ if($_SESSION['schoolid']){
 
 <body>
 
-    <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <div class="banner"><a href="mobiledashboard.php">Peaks&Arrow</a></div>
-        <ul class="nav_menu">
-            <a href="u_distribution.php">
-                <li>Start Distributon</li>
-            </a>
-            <a href="u_issued.php">
-                <li>Uinform Issued</li>
-            </a>
-            <a href="u_distributed.php">
-                <li>Uniform Distributed</li>
-            </a>
-        </ul>
-        <div class="logout"><a href="mobilelogout.php">Logout</a></div>
-    </nav> -->
-
-    
-    <div class="pos-f-t">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h5 class="text-white h4">Peaks & Arrow</h5>
-      <a href="u_distribution.php"><li>Start Distributon</li></a>
-      <a href="u_issued.php"><li>Uinform Issued</li></a>
-      <a href="u_distributed.php"><li>Uniform Distributed</li></a>
-      <a href="mobilelogout.php"><div class="logout">Logout</div></a>
-  
-    </div>
-  </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </nav>
-</div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="mobiledashboard.php">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="u_distribution.php">Start Distribution</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="u_issued.php">Issued Uniform</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="u_distributed.php">Distributed Uniform</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mobilelogout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
-    <div class="container">
-        <div class="distribution_grid">
-            <div class="heading">General Info</div>
+
+    <div class="container mt-3">
+
+        <div class="text-center">
+            <p>General Info</p>
         </div>
 
-        <form class="general_info_form" action="" methdo="POST">
-            <div class="firstname">
-                First Name : <input type="text" name="firstname" id="fistName" placeholder="First Name">
+        <form class="distribution-form">
+            <div class="form-group row">
+                <label for="inputText" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="First Name">
+                </div>
             </div>
-            <div class="lastname">
-                Last Name : <input type="text" name="lastname" id="lastName" placeholder="Last Name">
+            <div class="form-group row">
+                <label for="inputText" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="Last Name">
+                </div>
             </div>
-            <div class="gender">
-                Select Gender :
-                <input type="radio" name="gender" value="male"> Male
-                <input type="radio" name="gender" value="female"> Female
-            </div>
-            <div class="standard">
-                Standard : <select>
-                    <option value="volvo">Jr.</option>
-                    <option value="saab">Sr.</option>
-                    <option value="mercedes">1st</option>
-                    <option value="audi">2nd</option>
-                    <option value="audi">3rd</option>
-                    <option value="audi">4th</option>
-                    <option value="audi">5th</option>
-                    <option value="audi">6th</option>
-                    <option value="audi">7th</option>
-                    <option value="audi">8th</option>
-                    <option value="audi">9th</option>
-                    <option value="audi">10th</option>
-                    <option value="audi">11th</option>
-                    <option value="audi">12th</option>
-                </select>
-            </div>
-            <div class="house">
-                House : <select>
-                    <option value="volvo">Red</option>
-                    <option value="saab">Green</option>
-                    <option value="mercedes">Blue</option>
-                    <option value="audi">Yellow</option>
-                </select>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
             </div>
 
-            <div class="phone">
-                Phone No : <input type="number" name="phonenumber" id="phoneNumber" placeholder="Phone Number">
-            </div>
-            <div class="distribution_grid">
-                <div class="heading">Product Info</div>
+            <div class="text-left">
+                <p>Select Gender</p>
             </div>
 
-            <p class="sub_heading">Regular Items</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                <label class="form-check-label" for="exampleRadios1">
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">
+                    Female
+                </label>
+            </div>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+
+            <div class="form-group mt-3">
+                <label for="exampleFormControlSelect1">Select Standard</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group row">
+                <label for="inputNumber" class="col-sm-2 col-form-label">Phone No.</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputPassword" placeholder="Phone Number">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p>Size Info</p>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <p class="sub_heading">PT Items</p>
-
-            <div class="shirt">
-                T-shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                T-shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                T-shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary two"><a class="textcolor" href="#">Submit</a></button>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
 
         </form>
     </div>
