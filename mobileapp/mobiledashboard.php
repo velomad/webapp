@@ -3,6 +3,7 @@
 session_start();
 include('db.php');
 
+
 $query = 'SELECT * FROM projects';
 
 $result = mysqli_query($conn, $query);
@@ -55,7 +56,7 @@ if($_SESSION['schoolid']){
   </nav>
 </div>
 
-<div class="text" id="welcometext">xyz school uniform portal</div>
+<div class="text" id="welcometext"><?php echo $_SESSION['schoolid']; ?> school uniform portal</div>
 
 
     <div class="one">

@@ -6,6 +6,7 @@ include("db.php");
 if(isset($_POST['submit'])){
     $schoolId = $_POST['schoolid'];
     $schoolPass = $_POST['schoolpass'];
+    
 
     $query = "SELECT * FROM PROJECTS WHERE school_id = '$schoolId' && school_password = '$schoolPass' ";
 

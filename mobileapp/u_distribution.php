@@ -20,7 +20,7 @@ if($_SESSION['schoolid']){
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/mobilestyle.css">
+    <!-- <link rel="stylesheet" href="css/mobilestyle.css"> -->
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -41,7 +41,7 @@ if($_SESSION['schoolid']){
         </ul>
         <div class="logout"><a href="mobilelogout.php">Logout</a></div>
     </nav> -->
-
+    <!-- 
     <div class="pos-f-t">
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark p-4">
@@ -65,143 +65,185 @@ if($_SESSION['schoolid']){
                 <span class="navbar-toggler-icon"></span>
             </button>
         </nav>
-    </div>
+    </div> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
-        <div class="distribution_grid">
-            <div class="heading">General Info</div>
-        </div>
-
-        <form class="general_info_form" action="" methdo="POST">
-            <div class="firstname">
-                First Name : <input type="text" name="firstname" id="fistName" placeholder="First Name">
+        <form class="distribution-form mt-3">
+            <div class="form-group row">
+                <label for="inputText" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="First Name">
+                </div>
             </div>
-            <div class="lastname">
-                Last Name : <input type="text" name="lastname" id="lastName" placeholder="Last Name">
+            <div class="form-group row">
+                <label for="inputText" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="Last Name">
+                </div>
             </div>
-            <div class="gender">
-                Select Gender :
-                <input type="radio" name="gender" value="male"> Male
-                <input type="radio" name="gender" value="female"> Female
-            </div>
-            <div class="standard">
-                Standard : <select>
-                    <option value="volvo">Jr.</option>
-                    <option value="saab">Sr.</option>
-                    <option value="mercedes">1st</option>
-                    <option value="audi">2nd</option>
-                    <option value="audi">3rd</option>
-                    <option value="audi">4th</option>
-                    <option value="audi">5th</option>
-                    <option value="audi">6th</option>
-                    <option value="audi">7th</option>
-                    <option value="audi">8th</option>
-                    <option value="audi">9th</option>
-                    <option value="audi">10th</option>
-                    <option value="audi">11th</option>
-                    <option value="audi">12th</option>
-                </select>
-            </div>
-            <div class="house">
-                House : <select>
-                    <option value="volvo">Red</option>
-                    <option value="saab">Green</option>
-                    <option value="mercedes">Blue</option>
-                    <option value="audi">Yellow</option>
-                </select>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
             </div>
 
-            <div class="phone">
-                Phone No : <input type="number" name="phonenumber" id="phoneNumber" placeholder="Phone Number">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                <label class="form-check-label" for="exampleRadios1">
+                    Male
+                </label>
             </div>
-            <div class="distribution_grid">
-                <div class="heading">Product Info</div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">
+                    Female
+                </label>
             </div>
 
-            <p class="sub_heading">Regular Items</p>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select Standard</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group row">
+                <label for="inputNumber" class="col-sm-2 col-form-label">Phone No.</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputPassword" placeholder="Phone Number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <p class="sub_heading">PT Items</p>
-
-            <div class="shirt">
-                T-shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                T-shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <div class="shirt">
-                T-shirt : <select>
-                    <option value="volvo">28</option>
-                    <option value="saab">30</option>
-                    <option value="mercedes">32</option>
-                    <option value="audi">34</option>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary two"><a class="textcolor" href="#">Submit</a></button>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select House</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
 
         </form>
     </div>
 
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="jquery-3.4.1.min.js"></script>
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="jquery-3.4.1.min.js"></script>
 
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
 
 
 </body>
