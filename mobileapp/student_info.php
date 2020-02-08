@@ -211,7 +211,8 @@ if($_SESSION['schoolid']){
                     <option>5</option>
                 </select>
             </div>
-
+        <button class="btn btn-warning">Edit</button>
+        <button class="btn btn-primary ml-3">Issue</button>
         </form>
     </div>
 

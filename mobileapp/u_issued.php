@@ -4,8 +4,11 @@ session_start();
 include('db.php');
 
 $query = 'SELECT * FROM projects';
+$sql = 'SELECT * FROM studentinfo';
 
 $result = mysqli_query($conn, $query);
+$result2 = mysqli_query($conn, $sql);
+
 
 if($_SESSION['schoolid']){
 ?>
@@ -64,19 +67,28 @@ if($_SESSION['schoolid']){
             <input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search">
             <button class="btn btn-outline-success  my-2 my-sm-2 " type="submit">Search Student</button>
         </div>
-
+        <?php
+        if(mysqli_num_rows($result2) > 0){
+            while($row = mysqli_fetch_assoc($result2)){
+            ?>
         <a class="student-card" href="student_info.php">
-            <div class="card">
+            <div class="card mt-3">
                 <div class="card-header">
-                    <p>Name : Sagar Chavan</p>
+                    <p>Name : <?php echo $row['firstname']; echo $row['lastname']; ?></p>
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote">
-                        <p>Phone No : 1235425415</p>
+                        <p>Phone No : <?php echo $row['phonenumber'] ?></p>
                     </blockquote>
                 </div>
             </div>
         </a>
+        <?php } 
+                }
+               else{
+                   echo "0 result";
+               }     
+            ?>
     </div>
 
 

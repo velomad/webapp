@@ -64,17 +64,17 @@ if($_SESSION['schoolid']){
             <p>General Info</p>
         </div>
 
-        <form class="distribution-form">
+        <form class="distribution-form" method="POST" action="insertstudentdata.php">
             <div class="form-group row">
                 <label for="inputText" class="col-sm-2 col-form-label">First Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="First Name" required>
+                    <input type="text" class="form-control" name="firstname" id="inputPassword" placeholder="First Name" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputText" class="col-sm-2 col-form-label">Last Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Last Name" required>
+                    <input type="text" class="form-control" name="lastname" id="inputPassword" placeholder="Last Name" required>
                 </div>
             </div>
 
@@ -83,13 +83,13 @@ if($_SESSION['schoolid']){
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required>
+                <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="Male" required>
                 <label class="form-check-label" for="exampleRadios1">
                     Male
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" required>
+                <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="Female" required>
                 <label class="form-check-label" for="exampleRadios2">
                     Female
                 </label>
@@ -98,7 +98,8 @@ if($_SESSION['schoolid']){
 
             <div class="form-group mt-3">
                 <label for="exampleFormControlSelect1">Select Standard</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" name="selectstandard" id="exampleFormControlSelect1" required>
+                    <option value="none" selected disabled hidden>Select Standard</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -109,7 +110,8 @@ if($_SESSION['schoolid']){
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Select House</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" name="selecthouse" id="exampleFormControlSelect1" required>
+                    <option value="none" selected disabled hidden>Select House</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -121,7 +123,7 @@ if($_SESSION['schoolid']){
             <div class="form-group row">
                 <label for="inputNumber" class="col-sm-2 col-form-label">Phone No.</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="inputPassword" placeholder="Phone Number">
+                    <input type="number" class="form-control" name="phonenumber" id="inputPassword" placeholder="Phone Number" required>
                 </div>
             </div>
 

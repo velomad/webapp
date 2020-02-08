@@ -52,7 +52,6 @@
                    
                     <form  accept-charset="UTF-8"  role="form" class="form-signin" method="POST" action="logincheck.php">
                         <div class="titles">
-                            
                             <h3>Admin Login</h3>
                         </div>
                         <div class="form-group">
