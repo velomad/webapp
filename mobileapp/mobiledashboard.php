@@ -3,10 +3,12 @@
 session_start();
 include('db.php');
 
+$id = isset($_GET['id']) ? $_GET['id'] : '';
 
-$query = 'SELECT * FROM projects';
+$query = "SELECT * FROM projects WHERE school_id= $id ";
 
 $result = mysqli_query($conn, $query);
+
  
 if($_SESSION['schoolid']){
 ?>
@@ -60,7 +62,7 @@ if($_SESSION['schoolid']){
 
     <div class="container mt-3">
       <div class="text-center">
-        <p>xyz School uniform portal</p>
+        <p><?php $row = mysqli_fetch_assoc($result); echo $row['title'] ?> School uniform portal</p>
       </div>
     </div>
 

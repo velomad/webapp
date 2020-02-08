@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
 
     if($num > 0){
         $_SESSION['schoolid'] = $schoolId;
-        header('Location:mobiledashboard.php');
+        header('Location:mobiledashboard.php?id='.$schoolId);
     }else{
         header('location:mobileindex.php');
     }
