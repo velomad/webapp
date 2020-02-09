@@ -52,11 +52,10 @@
                    
                     <form  accept-charset="UTF-8"  role="form" class="form-signin" method="POST" action="logincheck.php">
                         <div class="titles">
-                            
                             <h3>Admin Login</h3>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Usename" name="user" class="form-input" autocomplete="off" required>
+                            <input type="text" placeholder="Usename" name="user" class="form-input" autocomplete="off" required autofocus="on">
                             <div class="input-icon">
                                 <i class="fas fa-user"></i>
                             </div>

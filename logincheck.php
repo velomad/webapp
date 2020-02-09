@@ -6,12 +6,13 @@ if(isset($_POST['submit'])){
     $username = $_POST['user'];
     $password = $_POST['pass'];
 
+
     $query = " select * from users where user = '$username' && pass = '$password' ";
 
     $data = mysqli_query($conn, $query);  
 
     $total = mysqli_num_rows($data);
-        
+
     if($total == 1)
     {
         $_SESSION['user_name'] = $username;

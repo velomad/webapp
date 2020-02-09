@@ -119,7 +119,7 @@ $quey=mysqli_query($conn,$sql);
                 while($row = mysqli_fetch_assoc($quey)){  
                 ?>
                  <li class="list-group-item "><a href="project_report.php?id=<?php echo $row['id']?>" ><?php echo $row['title']  ?></li>            
-                <?php
+                <?php 
                } }
                else {
                   echo "0 results";

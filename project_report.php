@@ -3,7 +3,7 @@
 session_start(); 
 include("db.php");
 require_once("operations.php");
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+$id = $_GET['id'];
 $sql=" SELECT * FROM projects WHERE id = $id ";
 $quey=mysqli_query($conn,$sql); 
 //echo $quey;
@@ -21,7 +21,6 @@ else
   header("Location:index.php");
 } 
 ?>
-
 
 <!DOCTYPE html>
 <html>
