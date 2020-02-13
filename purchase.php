@@ -189,7 +189,26 @@ $(document).ready(function(){
 
 });
 
+
+//  table display using ajax
+
+
+function displayTableRows(){
+    $.ajax({
+		url: "viewtable.php",
+		type: "POST",
+		cache: false,
+		success: function(data){
+			$('#table').html(data); 
+		}
+	});
+  }
+
+  displayTableRows();
+
 // table insertion using ajax
+
+
 
 $(document).ready(function(){
   $('#butsave').on('click',function(){
@@ -215,6 +234,7 @@ $(document).ready(function(){
     success:function(data){
       $('#success').show();
       $('#success').html('Purchase Added !');
+      displayTableRows();
     }
     });
   });
