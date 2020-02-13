@@ -91,7 +91,6 @@ $sql10 = mysqli_query($conn, $query5);
 <div class="input-group mb-3 mt-3">
   <input type="text" id="mysearch" class="form-control" placeholder="Search" onkeyup="searchFunction()">
   <div class="input-group-append">
-    <button class="btn btn-success" type="submit">Go</button>
   </div>
 </div>
 
@@ -130,7 +129,7 @@ $sql10 = mysqli_query($conn, $query5);
         </form>
   </div>
   <div class="col-lg-6">
-<input type="text" placeholder="Add category" id="addcategory" name="category_name" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
+<input type="text" placeholder="Add category" id="addcategory" name="addcategory" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
 <button  id="addcategorybtn"  class="btn btn-primary">Save changes</button>
 <input type="text" placeholder="Add unit" id="addunit" name="addunit" class="form-control mt-3" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
 <button  id="addunitbtn"  class="btn btn-primary mt-2">Save changes</button>
@@ -192,6 +191,35 @@ $(document).ready(function(){
 
 // table insertion using ajax
 
+$(document).ready(function(){
+  $('#butsave').on('click',function(){
+    var categoryname = $('#category').val()
+    var itemname = $('#itemname').val()
+    var quantity = $('#quantity').val()
+    var unit = $('#unit').val()
+    var vendor = $('#vendor').val()
+    var rate = $('#rate').val()
+    
+    $.ajax({
+      url:"additem.php",
+      type:"POST",
+      data:
+      categoryname:categoryname,
+      itemname:itemname,
+      quantity:quantity,
+      unit:unit,
+      vendor:vendor,
+      rate:rate
+    },
+    cache:false,
+    success:function(data){
+      $('#success').html('Category Added !');
+    }
+    });
+  });
+});
+
+
 // adding category using
 
   $(document).ready(function(){
@@ -211,7 +239,7 @@ $(document).ready(function(){
 						$('#success').html('Category Added !');
             location.reload();
 
-          }
+          } 
         });
 
       });
