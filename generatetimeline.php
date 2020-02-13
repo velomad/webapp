@@ -1,8 +1,6 @@
-<?php session_start(); 
+<?php 
+session_start(); 
 include("db.php");
-
-//echo $id;
-//exit();
 
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)

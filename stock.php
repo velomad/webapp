@@ -74,32 +74,6 @@ button:hover{
 
 <div class="row">
 
- <!-- dropdown -->
- <select class="form-control mb-2 mr-5" id="category" name="category" style="width:30%;">
-                          <option value="">SELECT CATEGORY</option>
-                          <?php
-                          $sql2 = mysqli_query($conn, $query2);
-                         while($row = mysqli_fetch_assoc($sql2)){ ?>  
-				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
-                        <?php } ?>
-				      </select>
-              <button class="btn btn-pirmary" id="viewgraph" style="height:38px; border-radius:0px;  width:15%;">View Category Graph</button>
-              <button class="btn btn-pirmary" id="viewtable" style="height:38px; border-radius:0px; width:15%;">View Table</button>
-              
-      </div>
-        <!-- end dropdown -->
-
-<!-- purchase sale chart -->
-
-<!-- <?php include("purchasesalechart.php"); ?> -->
-
-
-<!-- line chart  -->
-
-<?php include("categorychart.php"); ?>
-
-
-</div>
 
 <!-- End content -->
 

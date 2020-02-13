@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("db.php");
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)

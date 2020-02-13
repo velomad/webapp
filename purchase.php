@@ -192,50 +192,6 @@ $(document).ready(function(){
 
 // table insertion using ajax
 
-  function tp(){
-    $.ajax({
-		url: "viewtable.php",
-		type: "POST",
-		cache: false,
-		success: function(data){
-			$('#table').html(data); 
-		}
-	});
-  }
-
-  tp();
-	$('#butsave').on('click', function() {
-    $("#butsave").attr("disabled", "disabled");
-    var category = $('#category').val();
-		var itemname = $('#itemname').val();
-		var quantity = $('#quantity').val();
-		var unit = $('#unit').val();
-		var vendor = $('#vendor').val();
-    var rate = $('#rate').val();
-		
-			$.ajax({
-				url: "additem.php",
-				type: "POST",
-				data: {
-          category: category,
-					itemname: itemname,
-					quantity: quantity,
-					unit: unit,
-					vendor: vendor,
-          rate:rate				
-				},
-				cache: false,
-				success: function(dataResult){
-						$("#butsave").removeAttr("disabled");
-            $('#formvalues').find('input:text').val('');
-            $("#success").show();
-						$('#success').html('Data added successfully !');
-            tp();
-				}
-			});
-		
-	});
-
 // adding category using
 
   $(document).ready(function(){
@@ -292,15 +248,7 @@ function delask(){
   alert("Are you sure ?");
 }
 
-const searchFunction = () =>{
-  let filter = document.getElementById("mysearch").value.toUpperCase();
-  let mytable = document.getElementById("table");
-  let tr = mytable.getElementByTagName("tr");
-
-}
-
-
-    </script>
+</script>
 </body>
 
 </html>

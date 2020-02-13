@@ -79,7 +79,6 @@
       </div>
     </main>
 
-
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="jquery-3.4.1.min.js"></script>
 
