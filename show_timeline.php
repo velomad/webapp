@@ -17,7 +17,7 @@ else
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $query = "SELECT * FROM showtimeline where timeline_id = $id";
 
-$run = mysqli_query($conn,$query);
+$run = mysqli_query($conn,$query)
 
 //$result = mysqli_fetch_assoc($run);
 
