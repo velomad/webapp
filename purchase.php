@@ -203,7 +203,7 @@ $(document).ready(function(){
     $.ajax({
       url:"additem.php",
       type:"POST",
-      data:
+      data:{
       categoryname:categoryname,
       itemname:itemname,
       quantity:quantity,
@@ -213,7 +213,8 @@ $(document).ready(function(){
     },
     cache:false,
     success:function(data){
-      $('#success').html('Category Added !');
+      $('#success').show();
+      $('#success').html('Purchase Added !');
     }
     });
   });
