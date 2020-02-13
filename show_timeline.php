@@ -15,10 +15,9 @@ else
   header("Location:index.php");
 }
 $id = isset($_GET['id']) ? $_GET['id'] : '';
-$query = "SELECT * FROM showtimeline where timeline_id = $id";
+$sql = "SELECT * FROM showtimeline where timeline_id = $id";
 
-$run = mysqli_query($conn,$query);
-
+$result = mysqli_query($conn,$sql);
 //$result = mysqli_fetch_assoc($run);
 
 ?>
@@ -67,7 +66,12 @@ img{
 <div class="container mt-2">
   <div class="row">
   <div class="col-lg-3 col-6">
-      <form action="generatetimeline.php" method="POST">        
+  <?php $sql2 = "SELECT * FROM projects WHERE id =" .$id;
+            $result2 = mysqli_query($conn, $sql2);
+            $row2 = mysqli_fetch_assoc($result2);
+      ?>
+      <form action="generatetimeline.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $row2['id'] ?>">
           <input type="text" class="form-control" placeholder="Title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required autocomplete="off">    
           </div>
           <div class="col-lg-3 col-6">
@@ -88,7 +92,7 @@ img{
   <div class="row">
 <?php 
 $count = 0;
-while($row =  mysqli_fetch_assoc($run)) { ?>  
+while($row =  mysqli_fetch_assoc($result)) { ?>  
   <div class="col-lg-4">
   <div class="card bg-primary mt-3">
     <div class="card-body text-white">
