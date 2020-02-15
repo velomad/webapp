@@ -13,9 +13,8 @@ else
   header("Location:index.php");
 } 
 
-$unit_name = $_POST['unit_name'];
+$addunit = $_POST['addunit'];
 
-$query = " INSERT INTO units (unit_name) VALUES ('$unit_name') ";
-mysqli_query($conn, $query);
-
+$sql = "INSERT INTO units (unit_name) VALUES ('$addunit')";
+mysqli_query($conn, $sql)
 ?>

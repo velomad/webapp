@@ -13,9 +13,10 @@ else
   header("Location:index.php");
 } 
 
-$category_name = $_POST['category_name'];
+$addcategory = $_POST['addcategory'];
 
-$query = " INSERT INTO categories (category_name) VALUES ('$category_name') ";
-mysqli_query($conn, $query);
+$sql = "INSERT INTO categories (category_name) VALUES ('$addcategory')";
+mysqli_query($conn, $sql);
+
 
 ?>

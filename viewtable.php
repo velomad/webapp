@@ -5,7 +5,7 @@ session_start();
 include("db.php");
 $userprofile = $_SESSION['user_name'];
 if($userprofile == true)
-{
+{   
  
 }
 else
@@ -13,63 +13,65 @@ else
   header("Location:index.php");
 } 
 
-if(isset($_GET['edit'])){
-  $id = $_GET['edit'];
 
-  $query3 = "select * from additem where item_id = $id";
-  $sql3 = mysqli_query($conn, $query3);
-  $row = mysqli_fetch_assoc($sql3);
+$sql = "SELECT * FROM additem";
+$result = mysqli_query($conn, $sql);
 
-$category = $row['category'];
-$itemname = $row['itemname'];
-$quantity = $row['quantity'];
-$unit = $row['unit'];
-$vendor = $row['vendor'];
-$rate = $row['rate'];
+
+
+$data = '<table class="table mt-3">
+<thead class="thead-light">
+  <tr>
+    <th scope="col">Date &nbsp; | &nbsp; Time</th>
+    <th scope="col">Category</th>
+    <th scope="col">Item</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Unit</th>
+    <th scope="col">Vendor</th>
+    <th scope="col">Rate</th>
+    <th scope="col">Value</th>
+    <th scope="col">option</th>
+    <th scope="col">option</th>
+  </tr>
+</thead>
+<tbody id="table">';  
+
+$sql2 = "SELECT unit_name FROM units 
+        INNER JOIN additem ON units.unit_id = additem.unit_id";
+$result2 = mysqli_query($conn, $sql2);
+$row2 = mysqli_fetch_assoc($result2);
+
+if(mysqli_num_rows($result) > 0){
+  $number = 1;
+  while($row = mysqli_fetch_assoc($result)){
+    
+    $data .= '<tr>
+          <td>'.$row['dates'].'</td>
+          <td>'.$row['category_id'].'</td>
+          <td>'.$row['item_name'].'</td>
+          <td>'.$row['quantity'].'</td>
+          <td>'.$row['unit_id'].'</td>
+          <td>'.$row['vendor'].'</td>
+          <td>'.$row['rate'].'</td>
+          <td>'.$row['rate'].'</td>
+          <td><button class = "btn btn-warning" value="edit">EDIT</button></td>
+          <td><button class = "btn btn-danger" value="delete">DELETE</button></td>
+        </tr>';
+$number++;
+  }
+
+  $data .= '</tbody>
+        </table>';
+echo $data;
+
+}else{
+
+  $errorMsg ='<div class="row" style="background-color:blue"; color:white;>';
+              echo "0 results found";
+  $errorMsg .=  '</div>';
 }
 
-$query2 = "SELECT * FROM additem ";
-$sql2 = mysqli_query($conn, $query2);
 
-$query4 = "SELECT item_id,dates,category_name,item_name,quantity,vendor,rate FROM additem 
-INNER JOIN categories ON categories.category_id = additem.category_id"; 
-$sql4 = mysqli_query($conn, $query4);
-
-$query5 = "SELECT item_id,dates,item_name,quantity,unit_name,vendor,rate FROM additem 
- INNER JOIN units ON units.unit_id = additem.unit_id"; 
-
-
-
-if($sql2->num_rows > 0){
-    while($row = mysqli_fetch_assoc($sql4)){
-        ?>
-
-        <tr>
-            <td><?php echo $row['dates'];?></td>
-            <td><?php echo $row['category_name'];?></td>
-            <td><?php echo $row['item_name'];?></td>
-            <td><?php echo $row['quantity'];?></td>
-            <td><?php $sql10 = mysqli_query($conn, $query5); $roww = mysqli_fetch_assoc($sql10); echo $roww['unit_name'];?></td>
-            <td><?php echo $row['vendor'];?></td>
-            <td><?php echo $row['rate'];?></td>
-            <td><?php echo $row['quantity']*$row['rate'];?></td>
-            <td><div class="dropdown" >
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    action
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a href="purchase.php?edit=<?php echo $row['item_id'] ?>" class="edit dropdown-item"  data-id="<?php echo $row['item_id'];?>"  id="edit">edit</a>
-    <a href="additem.php?del=<?php echo $row['item_id'] ?>" onclick="delask()" class="dropdown-item" id="#remove">remove</a> 
-  </div>
-</div>
-</td>
-        </tr>
-        <?php
-    }
-}
-    else{
-        echo "0 results";
-    }
-    ?>
+?>
 
 

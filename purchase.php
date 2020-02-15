@@ -14,27 +14,14 @@ else
   header("Location:index.php");
 } 
 
-$query = "SELECT * FROM categories";
+$sql = "SELECT * FROM categories";
+$result = mysqli_query($conn, $sql);
 
-$query2 = "SELECT * FROM additem";
-
-$query3 = "SELECT * FROM units";
-
-$query4 = "SELECT item_id,dates,category_name,item_name,quantity,vendor,rate FROM additem 
-INNER JOIN categories ON categories.category_id = additem.category_id"; 
-
-$query5 = "SELECT item_id,dates,item_name,quantity,unit_name,vendor,rate FROM additem 
- INNER JOIN units ON units.unit_id = additem.unit_id"; 
-// $query5 = "SELECT unit_name FROM  units
-// INNER JOIN additem ON units.unit_id = additem.unit_id"; 
+$sql2 = "SELECT * FROM units";
+$result2 = mysqli_query($conn, $sql2);
 
 
-$sql10 = mysqli_query($conn, $query5);
-
-// $row = mysqli_fetch_assoc($sql10);
-
-// print_r($row);
-
+  
 
 ?>
 <!DOCTYPE html>
@@ -82,14 +69,16 @@ $sql10 = mysqli_query($conn, $query5);
         <p style="background-color:#323232; padding:10px 50px; border-radius:5px; width:100%; text-align:left; font-size:20px; color:white;">PURCHASE</p>
     </div>
 
-<div class="btn-group btn-group-md">
+    <input type="text" id="mysearch" class="form-control" placeholder="Search" onkeyup="searchFunction()">
+
+
+<div class="btn-group btn-group-md mt-3">
 <button type="button" class="btn btn-primary" id="additem">add Item</button>
 <button type="button" class="btn btn-primary pull-right">Remove category</button>
 </div>
 
 
 <div class="input-group mb-3 mt-3">
-  <input type="text" id="mysearch" class="form-control" placeholder="Search" onkeyup="searchFunction()">
   <div class="input-group-append">
   </div>
 </div>
@@ -101,11 +90,9 @@ $sql10 = mysqli_query($conn, $query5);
         <!-- dropdown -->
         <select class="form-control mb-2" id="category" name="category" value="<?php echo $category; ?>">
                           <option value="">SELECT CATEGORY</option>
-                          <?php
-                          $sql = mysqli_query($conn, $query);
-                         while($row = mysqli_fetch_assoc($sql)){ ?>  
-				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['category_name'] ?></option>
-                        <?php } ?>
+                          <?php while($row = mysqli_fetch_assoc($result)) { ?>
+                          <option value="<?php echo $row['category_id'] ?>"><?php echo $row['category_name'] ?></option>
+                          <?php } ?>
 				      </select>
         <!-- end dropdown -->
       <input type="text" placeholder="Item Name" id="itemname" name="itemname" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $itemname; ?>">
@@ -113,11 +100,9 @@ $sql10 = mysqli_query($conn, $query5);
         <!-- dropdown -->
         <select class="form-control mb-2" id="unit" name="unit" value="<?php echo $unit; ?>">
                           <option value="">SELECT UNIT</option>
-                          <?php
-                          $sql = mysqli_query($conn, $query3);
-                         while($row = mysqli_fetch_assoc($sql)){ ?>  
-				      	<option value=<?php echo $row['unit_id']; ?>><?php echo $row['unit_name'] ?></option>
-                        <?php } ?>
+                          <?php while($row2 = mysqli_fetch_assoc($result2)) { ?>
+                          <option value="<?php echo $row2['unit_id'] ?>"><?php echo $row2['unit_name'] ?></option>
+                          <?php } ?>
 				      </select>
         <!-- end dropdown -->
       <input type="text" placeholder="Vendor" id="vendor" name="vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $vendor; ?>">
@@ -143,24 +128,10 @@ $sql10 = mysqli_query($conn, $query5);
 
 <!-- table -->
 
-<table class="table mt-3">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Date &nbsp; | &nbsp; Time</th>
-      <th scope="col">Category</th>
-      <th scope="col">Item</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Unit</th>
-      <th scope="col">Vendor</th>
-      <th scope="col">Rate</th>
-      <th scope="col">Value</th>
-      <th scope="col">option</th>
-    </tr>
-  </thead>
-  <tbody id="table">
+<div id="print">
 
-  </tbody>
-</table>
+</div>
+
 <!-- Modal -->
 
 
@@ -186,118 +157,105 @@ $(document).ready(function(){
   $('#additem').click(function(){   
       $('#slider').slideToggle("slow");
   });
-
 });
 
+// read records
 
-//  table display using ajax
+function readRecords(){
+  var readrecord = "readrecord";
+  $.ajax({
+    url:"viewtable.php",
+    type:"POST",
+    data:{
+      readrecord:readrecord
+    },
+    success:function(data, status){
+      $('#print').html(data); 
+    }
+  });
+}
 
-
-function displayTableRows(){
-    $.ajax({
-		url: "viewtable.php",
-		type: "POST",
-		cache: false,
-		success: function(data){
-			$('#table').html(data); 
-		}
-	});
-  }
-
-  displayTableRows();
-
-// table insertion using ajax
-
-
+readRecords();
+// add categories
 
 $(document).ready(function(){
-  $('#butsave').on('click',function(){
-    var categoryname = $('#category').val()
-    var itemname = $('#itemname').val()
-    var quantity = $('#quantity').val()
-    var unit = $('#unit').val()
-    var vendor = $('#vendor').val()
-    var rate = $('#rate').val()
-    
-    $.ajax({
-      url:"additem.php",
-      type:"POST",
-      data:{
-      categoryname:categoryname,
-      itemname:itemname,
-      quantity:quantity,
-      unit:unit,
-      vendor:vendor,
-      rate:rate
+  $('#addcategorybtn').click(function(){
+    var addcategory = $('#addcategory').val()
+  
+  $.ajax({
+    type:"POST",
+    url:"addcategories.php",
+    data:{
+      addcategory:addcategory
     },
     cache:false,
     success:function(data){
+      $('#addcategory').val('');
       $('#success').show();
-      $('#success').html('Purchase Added !');
-      displayTableRows();
+      $('#success').html('category added');
     }
+  });
+});
+});
+
+// add units 
+
+$(document).ready(function(){
+  $('#addunitbtn').click(function(){
+    var addunit = $('#addunit').val()
+  
+  $.ajax({
+    type:"POST",
+    url:"addunit.php",
+    data:{
+      addunit:addunit
+    },
+    cache:false,
+    success:function(data){
+      $('#addunit').val('');
+      $('#success').show();
+      $('#success').html('unit added');
+    }
+  });
+});
+});
+
+//  add items in table
+
+$(document).ready(function(){
+  $('#butsave').click(function(){
+    var category = $('#category').val();
+    var itemname = $('#itemname').val();
+    var quantity = $('#quantity').val();
+    var unit = $('#unit').val();
+    var vendor = $('#vendor').val();
+    var rate = $('#rate').val();
+
+    $.ajax({
+      type:"POST",
+      url:"additem.php",
+      data:{
+        category:category,
+        itemname:itemname,
+        quantity:quantity,
+        unit:unit,
+        vendor:vendor,
+        rate:rate,
+      },
+      cache:false,
+      success:function(data, status){
+        $('#itemname').val('');
+        $('#quantity').val('');
+        $('#vendor').val('');
+        $('#rate').val('');
+        $('#success').show();
+        $('#success').html('item added.');
+        readRecords();
+      }
     });
   });
 });
 
-
-// adding category using
-
-  $(document).ready(function(){
-      $("#addcategorybtn").click(function(){
-        
-        var addcategory = $('#addcategory').val();
-        $.ajax({
-          url:"addcategories.php",
-          type:"post",
-          data:{
-            category_name:addcategory
-          },
-          cache:false,
-          success: function(data){
-            $('#addcategory').val('');
-            $("#success").show();
-						$('#success').html('Category Added !');
-            location.reload();
-
-          } 
-        });
-
-      });
-  });
-
-
-
-
-  // adding units using ajax
-
-  $(document).ready(function(){
-      $("#addunitbtn").click(function(){
-        var addunit = $('#addunit').val();
-        $.ajax({
-          url:"addunit.php",
-          type:"post",
-          data:{
-            unit_name:addunit
-          },
-          cache:false,
-          success: function(data){
-            $('#addcategory').val('');
-            $("#success").show();
-						$('#success').html('unit Added !');
-            location.reload();
-
-          }
-        });
-
-      });
-  });
-
-function delask(){
-  alert("Are you sure ?");
-}
-
 </script>
 </body>
-
 </html>
