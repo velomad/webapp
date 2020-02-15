@@ -14,12 +14,8 @@ else
 } 
 
 
-$sql = "SELECT * FROM additem";
-$result = mysqli_query($conn, $sql);
-
-
-
-$data = '<table class="table mt-3">
+?>
+<table class="table mt-3">
 <thead class="thead-light">
   <tr>
     <th scope="col">Date &nbsp; | &nbsp; Time</th>
@@ -34,43 +30,55 @@ $data = '<table class="table mt-3">
     <th scope="col">option</th>
   </tr>
 </thead>
-<tbody id="table">';  
+<tbody id="table">
+<?php
 
-$sql2 = "SELECT unit_name FROM units 
-        INNER JOIN additem ON units.unit_id = additem.unit_id";
-$result2 = mysqli_query($conn, $sql2);
-$row2 = mysqli_fetch_assoc($result2);
+
+$sql = "SELECT * FROM additem";
+$result = mysqli_query($conn, $sql);
+
+
+// $sql2 = "SELECT unit_name FROM units 
+//         INNER JOIN additem ON units.unit_id = additem.unit_id";
+// $result2 = mysqli_query($conn, $sql2);
+// $row2 = mysqli_fetch_assoc($result2);
+
+
+$sql3 = "SELECT item_id,dates,category_name,item_name,quantity,vendor,rate FROM additem 
+INNER JOIN categories ON categories.category_id = additem.category_id"; 
+$result3 = mysqli_query($conn, $sql3);
+
+$sql4 = "SELECT item_id,dates,item_name,quantity,unit_name,vendor,rate FROM additem 
+ INNER JOIN units ON units.unit_id = additem.unit_id"; 
+$result4 = mysqli_query($conn, $sql4);
 
 if(mysqli_num_rows($result) > 0){
-  $number = 1;
   while($row = mysqli_fetch_assoc($result)){
-    
-    $data .= '<tr>
-          <td>'.$row['dates'].'</td>
-          <td>'.$row['category_id'].'</td>
-          <td>'.$row['item_name'].'</td>
-          <td>'.$row['quantity'].'</td>
-          <td>'.$row['unit_id'].'</td>
-          <td>'.$row['vendor'].'</td>
-          <td>'.$row['rate'].'</td>
-          <td>'.$row['rate'].'</td>
+?>    
+  <tr>
+          <td><?php $row['dates'] ?></td>
+          <td><?php $row['category_id'] ?></td>
+          <td><?php $row['item_name'] ?></td>
+          <td><?php $row['quantity'] ?></td>
+          <td><?php $row['unit_id'] ?></td>
+          <td><?php $row['vendor'] ?></td>
+          <td><?php $row['rate'] ?></td>
+          <td><?php $row['rate'] ?></td>
           <td><button class = "btn btn-warning" value="edit">EDIT</button></td>
           <td><button class = "btn btn-danger" value="delete">DELETE</button></td>
-        </tr>';
-$number++;
+        </tr>
+<?php         
   }
+  ?>
+  </tbody>
+</table>
 
-  $data .= '</tbody>
-        </table>';
-echo $data;
-
-}else{
-
-  $errorMsg ='<div class="row" style="background-color:blue"; color:white;>';
-              echo "0 results found";
-  $errorMsg .=  '</div>';
+<?php
 }
-
+else
+{
+echo "0 results found";
+}
 
 ?>
 
