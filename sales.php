@@ -13,7 +13,7 @@ else
 $query = " SELECT * FROM categories ";
 
 
-$query2 = " SELECT * FROM additem ";
+$query2 = " SELECT * FROM additem "; 
 
 // $query3 = "SELECT * FROM sales";
 
@@ -70,7 +70,7 @@ $query2 = " SELECT * FROM additem ";
   <form id="formvalues">
         <!-- dropdown -->
         <select class="form-control mb-2" id="category" name="category">
-                          <option value="">SELECT CATEGORY</option>
+                          <option selected="" disabled="" value="">SELECT CATEGORY</option>
                           <?php
                           $sql = mysqli_query($conn, $query);
                          while($row = mysqli_fetch_assoc($sql)){ ?>  
@@ -80,12 +80,8 @@ $query2 = " SELECT * FROM additem ";
         <!-- end dropdown -->
      <!-- dropdown -->
      <select class="form-control mb-2" id="itemname" name="itemname">
-                          <option value="">SELECT ITEM</option>
-                          <?php
-                          $sql2 = mysqli_query($conn, $query2);
-                         while($row = mysqli_fetch_assoc($sql2)){ ?>  
-				      	<option value=<?php echo $row['category_id']; ?>><?php echo $row['item_name'] ?></option>
-                        <?php } ?>
+                          <option selected="" disabled="" value="">SELECT ITEM</option>
+                          
 				      </select>
         <!-- end dropdown -->
       <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off">
@@ -191,8 +187,9 @@ $('#butsave').on('click', function() {
             tp();
 				}
 			});
-		
 	});
+
+// load dropdown
 
 
     </script>

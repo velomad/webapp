@@ -132,8 +132,68 @@ $result2 = mysqli_query($conn, $sql2);
 
 </div>
 
-<!-- Modal -->
 
+<!-- Modal for edit button-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit changes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <select class="form-control mb-2" id="update_category" name="update_category" value="<?php echo $category; ?>">
+                          <option value="">SELECT CATEGORY</option>
+                          <?php while($row = mysqli_fetch_assoc($result)) { ?>
+                          <option value="<?php echo $row['category_id'] ?>"><?php echo $row['category_name'] ?></option>
+                          <?php } ?>
+				      </select>
+        <!-- end dropdown -->
+      <input type="text" placeholder="Item Name" id="update_itemname" name="update_itemname" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $itemname; ?>">
+      <input type="text" placeholder="Quantity" id="update_quantity" name="update_quantity" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $quantity; ?>">
+        <!-- dropdown -->
+        <select class="form-control mb-2" id="update_unit" name="update_unit" value="<?php echo $unit; ?>">
+                          <option value="">SELECT UNIT</option>
+                          <?php while($row2 = mysqli_fetch_assoc($result2)) { ?>
+                          <option value="<?php echo $row2['unit_id'] ?>"><?php echo $row2['unit_name'] ?></option>
+                          <?php } ?>
+				      </select>
+        <!-- end dropdown -->
+      <input type="text" placeholder="Vendor" id="update_vendor" name="update_vendor" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $vendor; ?>">
+      <input type="text" placeholder="Rate" id="update_rate" name="update_rate" class="form-control mb-2" aria-label="Small" aria-describedby="inputGroup-sizing-sm" autocomplete="off" value="<?php echo $rate; ?>">
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onclick="getRecordDetails()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for DELETE button-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+        <button type="button" id="delete" data-dismiss="modal" onclick="deleteRecord()" class="btn btn-success">YES</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 
@@ -161,21 +221,7 @@ $(document).ready(function(){
 
 // read records
 
-function readRecords(){
-  var readrecord = "readrecord";
-  $.ajax({
-    url:"viewtable.php",
-    type:"POST",
-    data:{
-      readrecord:readrecord
-    },
-    success:function(data, status){
-      $('#print').html(data); 
-    }
-  });
-}
 
-readRecords();
 // add categories
 
 $(document).ready(function(){
@@ -221,9 +267,22 @@ $(document).ready(function(){
 });
 
 //  add items in table
+function readRecords(){
+  var readrecord = "readrecord";
+  $.ajax({
+    url:"viewtable.php",
+    type:"POST",
+    data:{
+      readrecord:readrecord
+    },
+    success:function(data, status){
+      $('#print').html(data); 
+    }
+  });
+}
 
-$(document).ready(function(){
-  $('#butsave').click(function(){
+readRecords();
+  $('#butsave').on('click',function(){
     var category = $('#category').val();
     var itemname = $('#itemname').val();
     var quantity = $('#quantity').val();
@@ -254,7 +313,28 @@ $(document).ready(function(){
       }
     });
   });
-});
+
+// delete records 
+
+function deleteRecord(deleteid){
+  $('#delete').click(function(){
+    $.ajax({
+      url:"viewtable.php",
+      type:"POST",
+      data:{
+        deleteid:deleteid
+      },
+      cache:false,
+      success:function(data,status){
+        readRecords();
+      } 
+    });
+  });
+  }
+
+function getRecordDetails(editid) {
+  
+}
 
 </script>
 </body>

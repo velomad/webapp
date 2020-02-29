@@ -486,3 +486,139 @@ if($sql2->num_rows > 0){
     else{
         echo "0 results";
     }
+
+
+
+echo $row['firstname'];
+
+
+
+<!-- 
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;border-color:#9ABAD9; width: 100%;}
+    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#9ABAD9;color:#444;background-color:#EBF5FF;}
+    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#9ABAD9;color:#fff;background-color:#409cff;}
+    .tg .tg-34fe{background-color:#c0c0c0;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-fq1u{background-color:#fe0000;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-8bgf{font-style:italic;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-jtou{background-color:#c0c0c0;color:#ffffff;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-svo0{background-color:#D2E4FC;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-rqtf{background-color:#c0c0c0;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-0r1j{background-color:#fe0000;color:#ffffff;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-1teh{background-color:#fe0000;color:#ffffff;border-color:inherit;text-align:center;vertical-align:middle}
+    </style>
+    <?php 
+    $sqltable = "SELECT id FROM studentinfo where schoolid = $id";
+    $resulttable = mysqli_query($conn, $sqltable);
+    while($rowtable = mysqli_fetch_assoc($resulttable)){
+    ?>
+    <table class="tg">
+      <tr>
+        <th class="tg-8bgf">1</th>
+        <th class="tg-c3ow">Name</th>
+        <th class="tg-c3ow">Standard</th>
+        <th class="tg-c3ow">Gender</th>
+        <?php 
+        
+        $sqlitemname = "SELECT item_name FROM sizeinfo WHERE stud_id = 6";
+        $resultitemname = mysqli_query($conn, $sqlitemname);
+      while($rowitemname = mysqli_fetch_assoc($resultitemname)){
+    ?>
+        <th class="tg-jtou"><?php  echo $rowitemname['item_name'] ?></th>
+      
+        <?php  } 
+      
+      ?>
+        <th class="tg-fq1u">House</th>
+        <th class="tg-c3ow">Phone No.</th>
+        <th class="tg-c3ow">Print</th>
+      </tr>
+      
+      <tr>
+        <td class="tg-svo0"></td>
+        <?php  
+        while($row = mysqli_fetch_assoc($result)){
+        ?>
+        <td class="tg-svo0"><?php echo $row['firstname'].' '.$row['lastname'] ?></td>
+        <td class="tg-svo0"><?php echo $row['selectstandard'] ?></td>
+        <td class="tg-svo0"><?php echo $row['gender'] ?></td>
+          
+<?php
+$sqlsize = "SELECT size FROM sizeinfo WHERE stud_id = 6";
+$resultsize = mysqli_query($conn, $sqlsize);
+while($rowsize = mysqli_fetch_assoc($resultsize)){
+?>
+        <td class="tg-rqtf"><?php echo $rowsize['size'] ?></td>
+<?php
+        }
+        }
+?>
+        <td class="tg-0r1j"><?php echo $row['selecthouse'] ?></td>
+        <td class="tg-svo0"><?php echo $row['phonenumber'] ?></td>
+        <td class="tg-svo0"><button>Print</button></td>
+      </tr>
+    </table>
+    <br>
+      <?php 
+        }      
+      ?> -->
+
+
+
+<tr><?php  
+        $sqlsizeinfo = "SELECT * from sizeinfo where stud_id = $id";
+        $resultsizeinfo = mysqli_query($conn, $sqlsizeinfo);
+
+        while($rowsizeinfo = mysqli_fetch_assoc($resultsizeinfo)){
+    ?>
+    <tr>SAS</tr>
+    <?php  
+    }
+    ?>
+
+
+
+
+
+    
+<div class="container mt-3" id="printContent">
+
+<table border = "1" class="text-center" style="width:50%">
+
+<th>name</th>
+<th>standard</th>
+<th>house</th>
+
+<tr>
+    <td><?php echo $row['firstname'].' '.$row['lastname'] ?></td>
+    <td><?php echo $row['selectstandard'] ?></td>
+    <td><?php echo $row['selecthouse'] ?></td>
+</tr>
+<th>item</th>
+<th>size</th>
+<th>quantity</th>
+
+
+<tbody>
+<?php  
+        $sqlsizeinfo = "SELECT * from sizeinfo where stud_id = $id";
+        $resultsizeinfo = mysqli_query($conn, $sqlsizeinfo);
+
+        while($rowsizeinfo = mysqli_fetch_assoc($resultsizeinfo)){
+    ?>
+<tr>
+    <td><?php echo $rowsizeinfo['item_name'] ?></td>
+    <td><?php echo $rowsizeinfo['size'] ?></td>
+    <td ><?php echo $rowsizeinfo['quantity'] ?></td>
+</tr>
+
+<?php  
+    }
+    ?>
+</tbody>
+
+</tr>
+</table>
+
+</div>

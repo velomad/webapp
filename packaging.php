@@ -105,7 +105,7 @@ $run = mysqli_query($conn, $query);
     while($row = mysqli_fetch_assoc($run))
         {
     ?>
-    <a class="dropdown-item" href="stuff.php"><?php echo $row['title']; ?></a>
+    <a class="dropdown-item" href="stuff.php?id=<?php echo $row['id'] ?>"><?php echo $row['title']; ?></a>
     <?php
         }
     ?>

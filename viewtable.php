@@ -37,13 +37,6 @@ else
 $sql = "SELECT * FROM additem";
 $result = mysqli_query($conn, $sql);
 
-
-// $sql2 = "SELECT unit_name FROM units 
-//         INNER JOIN additem ON units.unit_id = additem.unit_id";
-// $result2 = mysqli_query($conn, $sql2);
-// $row2 = mysqli_fetch_assoc($result2);
-
-
 $sql3 = "SELECT item_id,dates,category_name,item_name,quantity,vendor,rate FROM additem 
 INNER JOIN categories ON categories.category_id = additem.category_id"; 
 $result3 = mysqli_query($conn, $sql3);
@@ -52,34 +45,47 @@ $sql4 = "SELECT item_id,dates,item_name,quantity,unit_name,vendor,rate FROM addi
  INNER JOIN units ON units.unit_id = additem.unit_id"; 
 $result4 = mysqli_query($conn, $sql4);
 
+
 if(mysqli_num_rows($result) > 0){
   while($row = mysqli_fetch_assoc($result)){
 ?>    
   <tr>
-          <td><?php $row['dates'] ?></td>
-          <td><?php $row['category_id'] ?></td>
-          <td><?php $row['item_name'] ?></td>
-          <td><?php $row['quantity'] ?></td>
-          <td><?php $row['unit_id'] ?></td>
-          <td><?php $row['vendor'] ?></td>
-          <td><?php $row['rate'] ?></td>
-          <td><?php $row['rate'] ?></td>
-          <td><button class = "btn btn-warning" value="edit">EDIT</button></td>
-          <td><button class = "btn btn-danger" value="delete">DELETE</button></td>
+          <td><?php echo $row['dates'] ?></td>
+          <td><?php $row3 = mysqli_fetch_assoc($result3); echo $row3['category_name'] ?></td>
+          <td><?php echo $row['item_name'] ?></td>
+          <td><?php echo $row['quantity'] ?></td>
+          <td><?php $row4 = mysqli_fetch_assoc($result4); echo $row4['unit_name'] ?></td>
+          <td><?php echo $row['vendor'] ?></td>
+          <td><?php echo $row['rate'] ?></td>
+          <td><?php echo $row['rate'] ?></td>
+          <td><button type="button" class="btn btn-warning" onclick="getRecordDetails(<?php echo $row['item_id'] ?>)" data-toggle="modal" data-target="#editModal">
+          EDIT
+          </button></td>
+          <td><button type="button" class="btn btn-danger" onclick="deleteRecord(<?php echo $row['item_id'] ?>)" data-toggle="modal" data-target="#deleteModal">
+          DELETE
+          </button></td>
+
         </tr>
 <?php         
   }
-  ?>
-  </tbody>
-</table>
-
-<?php
 }
+
 else
 {
 echo "0 results found";
 }
 
+
+$deleteid = $_POST['deleteid']; 
+
+$sql5 = "DELETE FROM additem WHERE item_id ='$deleteid' ";
+mysqli_query($conn, $sql5);
+
+
+
 ?>
+</tbody>
+</table>
+
 
 
